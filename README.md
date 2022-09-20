@@ -13,6 +13,7 @@ Integrantes:
 - Vitor Martins Cruz 11845410
 - Fábio Santos 11795505
 - Matheus Aranha Lopes 11221219
+- Wallace Ramon Nogueira Soares 11847030
 
 Descrição da plataforma:
 - Plataforma que permite organizar rachões para jogar basquete, onde o usuário terá condições de organizar o próprio rachão ou participar de rachões de acordo com a localidade, integrantes, etc.
