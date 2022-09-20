@@ -6,7 +6,7 @@ A = "CodeClimate badge"
 https://bighash.herokuapp.com/ = plataforma no Heroku
 Link para o projeto no Pivotal Tracker (não crie um projeto agora, o link será fornecido por mim, o projeto no Pivotal será criado assim que os grupos forem definidos)
 
-![master]https://github.com/fabioheiji/engenhariaSI/blob/master/.github/workflows/ruby.yml/badge.svg
+![master]https://github.com/fabioheiji/engenhariaSI/actions/workflows/ruby.yml/badge.svg
 
 Integrantes:
 - Fábio Heiji Yamada 5690618
