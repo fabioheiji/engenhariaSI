@@ -1,7 +1,6 @@
 # README
 
-A = "CodeClimate badge" 
-"Github Actions badge"
+A = "CodeClimate badge" Agora vai!
 "Coveralls badge" mostrando a cobertura de teste do código desenvolvido
 https://bighash.herokuapp.com/ = plataforma no Heroku
 Link para o projeto no Pivotal Tracker (não crie um projeto agora, o link será fornecido por mim, o projeto no Pivotal será criado assim que os grupos forem definidos)
