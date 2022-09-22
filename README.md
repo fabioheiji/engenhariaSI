@@ -7,6 +7,8 @@ Link para o projeto no Pivotal Tracker (não crie um projeto agora, o link será
 
 ![badge workflow](https://github.com/fabioheiji/engenhariaSI/actions/workflows/ruby.yml/badge.svg)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/2fb60f1d746c705757e0/maintainability)](https://codeclimate.com/github/fabioheiji/engenhariaSI/maintainability)
+
 Integrantes:
 - Fábio Heiji Yamada 5690618
 - Vitor Martins Cruz 11845410
