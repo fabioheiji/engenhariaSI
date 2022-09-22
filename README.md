@@ -21,4 +21,4 @@ Integrantes:
 Descrição da plataforma:
 - Plataforma que permite organizar rachões para jogar basquete, onde o usuário terá condições de organizar o próprio rachão ou participar de rachões de acordo com a localidade, integrantes, etc.
 
-Teste pull request!
+Teste pull request 2!
