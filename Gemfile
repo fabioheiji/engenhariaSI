@@ -80,3 +80,5 @@ gem 'sass-rails'
 gem 'coveralls_reborn', '~> 0.25.0', require: false
 
 gem 'simplecov', require: false, group: :test
+
+gem 'coveralls', require: false
