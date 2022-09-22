@@ -330,6 +330,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails
   selenium-webdriver
+  simplecov
   simplecov-lcov (~> 0.8.0)
   sprockets-rails
   sqlite3 (~> 1.4)
