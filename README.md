@@ -12,9 +12,7 @@ https://bighash.herokuapp.com/
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2fb60f1d746c705757e0/test_coverage)](https://codeclimate.com/github/fabioheiji/engenhariaSI/test_coverage)
 
-https://coveralls.io/github/se-edu/addressbook-level4?
-branch=master[image:https://coveralls.io/repos/github/se-edu/addressbook-level4/badge.svg?
-branch=master[CoverageStatus]]
+[![Coverage Status](https://coveralls.io/repos/github/fabioheiji/engenhariaSI/badge.svg?branch=master)](https://coveralls.io/github/fabioheiji/engenhariaSI?branch=master)
 
 Integrantes:
 - Fábio Heiji Yamada 5690618
