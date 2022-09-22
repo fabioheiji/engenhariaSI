@@ -53,7 +53,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "cucumber-rails", :require => false
-  gem 'database_cleaner'
+  gem "database_cleaner"
+  gem "jasmine"
 end
 
 group :development do
