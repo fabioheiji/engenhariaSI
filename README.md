@@ -9,6 +9,8 @@ Link para o projeto no Pivotal Tracker (não crie um projeto agora, o link será
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2fb60f1d746c705757e0/maintainability)](https://codeclimate.com/github/fabioheiji/engenhariaSI/maintainability)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2fb60f1d746c705757e0/test_coverage)](https://codeclimate.com/github/fabioheiji/engenhariaSI/test_coverage)
+
 Integrantes:
 - Fábio Heiji Yamada 5690618
 - Vitor Martins Cruz 11845410
