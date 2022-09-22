@@ -75,3 +75,7 @@ group :test do
 end
 
 gem 'sass-rails'
+
+gem 'coveralls_reborn', '~> 0.25.0', require: false
+
+gem 'simplecov-lcov', '~> 0.8.0'
