@@ -1,9 +1,10 @@
 # README
 
-A = "CodeClimate badge" Agora vai!
 "Coveralls badge" mostrando a cobertura de teste do código desenvolvido
-https://bighash.herokuapp.com/ = plataforma no Heroku
+
 Link para o projeto no Pivotal Tracker (não crie um projeto agora, o link será fornecido por mim, o projeto no Pivotal será criado assim que os grupos forem definidos)
+
+https://bighash.herokuapp.com/
 
 ![badge workflow](https://github.com/fabioheiji/engenhariaSI/actions/workflows/ruby.yml/badge.svg)
 
@@ -20,5 +21,3 @@ Integrantes:
 
 Descrição da plataforma:
 - Plataforma que permite organizar rachões para jogar basquete, onde o usuário terá condições de organizar o próprio rachão ou participar de rachões de acordo com a localidade, integrantes, etc.
-
-Teste pull request 2!
