@@ -1,4 +1,3 @@
-require 'coveralls'
 require 'simplecov'
 
 SimpleCov.start 'rails' do
@@ -15,8 +14,6 @@ SimpleCov.start 'rails' do
 
   add_filter %w[version.rb initializer.rb]
 end
-
-Coveralls.wear!
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
