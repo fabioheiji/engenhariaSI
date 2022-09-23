@@ -14,4 +14,15 @@
  *= require_self
  */
 
+.nomeApp{
+    background-image: linear-gradient(to right, rgba(0,0,0,.5), rgba(0,0,0,.8)), url("rachao.jpg");
+    
+    height: 30rem;
+    /* width: 20rem; */
+    background-size: cover;
+    color: white;
 
+}
+.tituloApp{
+    font-size: 5rem;
+}
