@@ -25,6 +25,7 @@
 - Fábio Santos 11795505
 - Matheus Aranha Lopes 11221219
 - Wallace Ramon Nogueira Soares 11847030
+- Thais Lasso Terense 10724222
 
 ## 🎥 Demo
 
