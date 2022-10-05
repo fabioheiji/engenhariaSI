@@ -5,6 +5,8 @@ ruby "3.1.2"
 
 gem "rails", "~> 7.0.4"
 
+gem 'pg'
+
 gem "sprockets-rails"
 
 gem "sqlite3", "~> 1.4"
@@ -23,16 +25,28 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 gem "bootsnap", require: false
 
+gem 'bcrypt', '~> 3.1.7'
+
 group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "cucumber-rails", :require => false
   gem "database_cleaner"
+  gem 'coveralls', require: false
   gem "jasmine"
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
-  gem "web-console"
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '~> 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'solargraph'
+  gem 'rubocop'
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
@@ -40,6 +54,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end
 
 gem "sass-rails"
@@ -51,3 +67,4 @@ gem "simplecov"
 gem 'simplecov-lcov', '~> 0.8.0'
 
 gem "coveralls", require: false
+
