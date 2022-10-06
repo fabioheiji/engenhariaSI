@@ -1,5 +1,5 @@
 <h1>Cadastro</h1>
-<%= form_with model: @user do |form| %>
+<%= form_with scope: :user, url: '/signup', local: true do |form| %>
     <p>
         <%= form.label :name %><br>
         <%= form.text_field :name %>
@@ -7,22 +7,22 @@
     
     <p>
         <%= form.label :email %><br>
-        <%= form.text_field :email %>
+        <%= form.email_field :email %>
     </p>
 
     <p>
         <%= form.label :password %><br>
-        <%= form.text_field :password %>
+        <%= form.password_field :password %>
     </p>
 
     <p>
-        <%= form.label :passwordConfirmation %><br>
-        <%= form.text_field :passwordConfirmation %>
+        <%= form.label :password_confirmation %><br>
+        <%= form.password_field :password_confirmation %>
     </p>
 
     <p>
-        <%= form.label :birthDate %><br>
-        <%= form.text_field :birthDate %>
+        <%= form.label :birth_date %><br>
+        <%= form.date_field :birth_date %>
     </p>
 
     <p>
@@ -31,6 +31,6 @@
     </p>
 
     <p>
-        <%= form.submit 'Salvar novo aluno' %>
+        <%= form.submit 'Salvar' %>
     </p>
 <% end %>
