@@ -15,20 +15,20 @@ Then('the user must be saved in the database') do
     expect(user.name).to eq('Wallace Ramon')
     expect(user.email).to eq('Wallaceramonns@usp.br')
     expect(user.password).to eq('123456')
-    expect(user.birth_date).to eq(Thu, 14 Oct 1999)
+    expect(user.birth_date).to eq(Date.new(1999, 10, 14))
     expect(user.position).to eq('Power Forward')
 end
   
 Then('the user should be redirected to the login page') do
-    pending # Write code here that turns the phrase above into concrete actions
+    visit '/login'
 end
   
 When('the user leaves the {string} field empty') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+    fill_in string, :with => ""
 end
   
 Then('the user should see the error message {string}') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(page).to have_content(string)
 end
   
 When('the user fills in the field {string} com {string}') do |string, string2|

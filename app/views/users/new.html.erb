@@ -1,4 +1,18 @@
 <h1>Cadastro</h1>
+
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+        <h2>
+            <%= @user.errors.count %> erro(s) impedem que o cadastri seja realizado:
+        </h2>
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= form_with scope: :user, url: '/signup', local: true do |form| %>
     <p>
         <%= form.label :name %><br>

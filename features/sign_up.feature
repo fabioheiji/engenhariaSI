@@ -53,7 +53,7 @@ Feature: Sign up
             When the user fills in the 'Password' field with "123456"
             When the user fills in the 'Birth' field with "14/10/1999"
             When the user fills in the 'Position' field with "Power Forward"
-            And the user leaves the "Password Confirmation" field empty
+            And the user leaves the "Password confirmation" field empty
             And click save
             Then the user should see the error message "É obrigatório informar a confirmação de senha!"
 
