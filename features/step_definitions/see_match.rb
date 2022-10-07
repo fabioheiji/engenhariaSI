@@ -1,10 +1,12 @@
-Given("that user visits existing match page") do
+Given("an existing match") do
   @match = Match.create(name: 'Match', description: "Description", address: "Address", limit: "10", private_quort: true, half_quort: true, level: "Beginner")
-  visit "/matches/#{@match.id}"
 end
 
-Given("that user visits non-existing match page") do
-  visit "/matches/2"
+Given("an non-existing match") do
+end
+
+When("the user visits the match {string}") do |string|
+  visit "/matches/#{string}"
 end
 
 Then("the user see the match information") do
