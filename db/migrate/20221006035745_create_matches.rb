@@ -4,12 +4,10 @@ class CreateMatches < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.string :address
-      t.string :private_quort
+      t.boolean :privateCourt
       t.string :limit
-      t.string :half_quort
+      t.boolean :halfCourt
       t.string :level
-      t.string :timestamps
-
       t.timestamps
     end
   end

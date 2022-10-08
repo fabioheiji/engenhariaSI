@@ -1,5 +1,5 @@
 Given("an existing match") do
-  @match = Match.create(name: 'Match', description: "Description", address: "Address", limit: "10", private_quort: true, half_quort: true, level: "Beginner")
+  @match = Match.create(name: 'Match', description: "Description", address: "Address", limit: "10", privateCourt: true, halfCourt: true, level: "Beginner")
 end
 
 Given("an non-existing match") do
