@@ -14,7 +14,7 @@ Then('the user must be saved in the database') do
     user = User.order("id").last
     expect(user.name).to eq('Wallace Ramon')
     expect(user.email).to eq('Wallaceramonns@usp.br')
-    expect(user.password).to eq('123456')
+    expect(user.password_digest).to be_truthy
     expect(user.birth_date).to eq(Date.new(1999, 10, 14))
     expect(user.position).to eq('Power Forward')
 end
@@ -29,8 +29,4 @@ end
   
 Then('the user should see the error message {string}') do |string|
     expect(page).to have_content(string)
-end
-  
-When('the user fills in the field {string} com {string}') do |string, string2|
-    pending # Write code here that turns the phrase above into concrete actions
 end

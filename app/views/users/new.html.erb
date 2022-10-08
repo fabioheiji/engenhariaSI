@@ -2,13 +2,12 @@
 
 <% if @user.errors.any? %>
     <div id="error_explanation">
-        <h2>
-            <%= @user.errors.count %> erro(s) impedem que o cadastri seja realizado:
-        </h2>
+        <h2><%= pluralize(@user.errors.count, "erro") %> impedem que o cadastro seja realizado:</h2>
+    
         <ul>
             <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
+            <li><%= msg %></li>
+        <% end %>
         </ul>
     </div>
 <% end %>

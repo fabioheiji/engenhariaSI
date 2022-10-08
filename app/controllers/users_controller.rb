@@ -4,11 +4,12 @@ class UsersController < ApplicationController
     end
     
     def create
-        @user = User.new(user_params) 
+        @user = User.new(user_params)
         if @user.save
             redirect_to '/login'
         else
-            render 'new'
+            render :new, status: :unprocessable_entity, content_type: "text/html"
+            headers["Content-Type"] = "text/html"
         end
     end
 
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
     def user_params
         data = params
             .require(:user)
-            .permit(:name, :email, :password, :birth_date, :position)
+            .permit(:name, :email, :password, :password_confirmation, :birth_date, :position)
         
     end
 end
