@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_10_05_030942) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -20,6 +19,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_030942) do
     t.string "email"
     t.date "birth_date"
     t.string "position"
+
+  create_table "matches", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "address"
+    t.boolean "privateCourt"
+    t.string "limit"
+    t.boolean "halfCourt"
+    t.string "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
