@@ -1,0 +1,23 @@
+<%
+=begin%>
+ <%= form_with url: "create", model: @match, method: :post do |form| %> 
+<%
+=end%>
+
+<%= form_with model: @match  do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+    <%= form.label :privateCourt %>
+    <%= form.check_box :privateCourt %>
+    <%= form.label :limit %>
+    <%= form.text_field :limit %>
+    <%= form.label :halfCourt %>
+    <%= form.check_box :halfCourt %>
+    <%= form.label :level %>
+    <%= form.text_field :level %>
+    <%= form.submit 'Salvar'%>
+<% end %>
