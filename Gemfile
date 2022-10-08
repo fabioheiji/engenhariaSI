@@ -5,8 +5,6 @@ ruby "3.1.2"
 
 gem "rails", "~> 7.0.4"
 
-gem 'pg'
-
 gem "sprockets-rails"
 
 gem "sqlite3", "~> 1.4"
@@ -35,8 +33,7 @@ group :development, :test do
   gem "database_cleaner"
   gem 'coveralls', require: false
   gem "jasmine"
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do

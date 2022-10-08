@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_030942) do
-  # These are extensions that must be enabled in order to support this database
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password_digest"
-    t.string "email"
-    t.date "birth_date"
-    t.string "position"
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_035745) do
   create_table "matches", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -28,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_030942) do
     t.string "limit"
     t.boolean "halfCourt"
     t.string "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.string "email"
+    t.date "birth_date"
+    t.string "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
