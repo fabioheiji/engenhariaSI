@@ -1,9 +1,33 @@
- <% @matches.each do |m| %>
-  <p><%= m.name %></p>
-  <p><%= m.description %></p>
-  <p><%= m.address %></p>
-  <p><%= m.privateCourt %></p>
-  <p><%= m.limit %></p>
-  <p><%= m.halfCourt %></p>
-  <p><%= m.level %></p>
-<% end %>  
+<div>
+  <h1>Matches</h1>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Address</th>
+      <th>Private Court</th>
+      <th>Limit</th>
+      <th>Half Court</th>
+      <th>Level</th>
+    </thead>
+    <tbody>
+      <% @matches.each do |match| %>
+        <tr>
+          <td><%= match.name %></td>
+          <td><%= match.description %></td>
+          <td><%= match.address %></td>
+          <td><%= match.privateCourt %></td>
+          <td><%= match.limit %></td>
+          <td><%= match.halfCourt %></td>
+          <td><%= match.level %></td>
+          <td><%= link_to 'View', match %></td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+  <%= link_to 'Create new match', new_match_path %>
+</div>
+
+
+
+
