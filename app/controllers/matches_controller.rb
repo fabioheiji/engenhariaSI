@@ -8,7 +8,6 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
     if @match.save 
       @matches = Match.all
-      # redirect_to(id_index_path)
       redirect_to('/matches')
       
     else 
@@ -16,17 +15,16 @@ class MatchesController < ApplicationController
     end
   end
  
-  def show
-    puts "Antes"
-    puts Match.all
-    puts "Depois"
+  def index
     @matches = Match.all
   end  
+
+  def show
+    @match = Match.find(params[:id])
+  end
 
   private
   def match_params
     params.require(:match).permit(:name,:description,:address,:privateCourt,:limit,:halfCourt,:level)
   end
-
-    
 end
