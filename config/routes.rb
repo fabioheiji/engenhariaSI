@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
 
   root 'pages#home'
+  
+  get 'signup' => 'users#new'
+  post 'signup' => 'users#create'
+  get 'login' => 'sessions#new'
 
   resources :matches, :users
 end

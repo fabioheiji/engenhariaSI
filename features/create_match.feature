@@ -3,13 +3,13 @@ Feature: User creates a match in the app
 
     Scenario Outline: Successful match registration
         Given the user is in the page's match registration
-        When the user fills in the 'name' field with "<name>"
-        When the user fills in the 'description' field with "<description>"
-        When the user fills in the 'address' field with "<address>"
-        When the user click on the 'privateCourt' field selecting the checkbox to "<privateCourt>"
-        When the user fills in the 'limit' field with "<limit>"
-        When the user click on the 'halfCourt' field selecting the checkbox to "<halfCourt>"
-        When the user fills in the 'level' field with "<level>"
+        When the user fills in the 'match_name' field with "<name>"
+        When the user fills in the 'match_description' field with "<description>"
+        When the user fills in the 'match_address' field with "<address>"
+        When the user click on the 'match_privateCourt' field selecting the checkbox to "<privateCourt>"
+        When the user fills in the 'match_limit' field with "<limit>"
+        When the user click on the 'match_halfCourt' field selecting the checkbox to "<halfCourt>"
+        When the user fills in the 'match_level' field with "<level>"
         When the user click on save
         Then the data must have been saved in the database and "<name>", "<description>", "<address>", "<privateCourt>", "<limit>", "<halfCourt>", "<level>" should be the last instance 
         Then all the data should habe been saved in the BD AND the user should see the "<name>", "<description>", "<address>", "<privateCourt>", "<limit>", "<halfCourt>", "<level>" created
