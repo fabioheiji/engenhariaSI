@@ -9,6 +9,7 @@
       <th>Limit</th>
       <th>Half Court</th>
       <th>Level</th>
+      <th>Actions</th>
     </thead>
     <tbody>
       <% @matches.each do |match| %>
@@ -20,12 +21,12 @@
           <td><%= match.limit %></td>
           <td><%= match.halfCourt %></td>
           <td><%= match.level %></td>
-          <td><%= link_to 'View', match %></td>
+          <td><%= link_to 'View', match, id: "view-#{match.id}" %></td>
         </tr>
       <% end %>  
     </tbody>
   </table>
-  <%= link_to 'Create new match', new_match_path %>
+  <span><%= link_to 'Create new match', new_match_path %></span>
 </div>
 
 

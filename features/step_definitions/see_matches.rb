@@ -1,23 +1,34 @@
-Given("a list of matches") do
-  pending
+Given("the user is in the matches page") do
+  visit "/matches"
 end
 
-When("the user visits the page") do
-  pending
+Then("the user must be a match table as follows") do |table|
+  elements = table.hashes
+  elements.each do |match|
+    expect(page).to have_content(match[:name])
+    expect(page).to have_content(match[:description])
+    expect(page).to have_content(match[:address])
+    expect(page).to have_content(match[:privateCourt])
+    expect(page).to have_content(match[:halfCourt])
+    expect(page).to have_content(match[:limit])
+    expect(page).to have_content(match[:limit])
+  end
 end
 
-When("the user click on {string}") do |string|
-  pending
+When("when the user clicks see, on the first element of the table") do
+  match_id = (Match.order("id").last.id).to_s
+  find("#view-#{match_id}").click
 end
 
-Then("the user see the matches information") do
-  pending
+When("the user click on create new match") do
+  click_on "Create new match"
 end
 
-Then("the user is redirected to specific match") do
-  pending
+Then("the user see the match details page") do
+  match_id = (Match.order("id").last.id).to_s
+  expect(page).to have_current_path(match_path(match_id))
 end
 
-Then("the user is redirected to match creation") do
-  pending
+Then("the user see the match creation page") do
+  expect(page).to have_current_path(new_match_path)
 end

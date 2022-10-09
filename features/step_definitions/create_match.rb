@@ -3,7 +3,6 @@ Given("the user is in the page's match registration") do
 end
 
 When('the user fills in the {string} field with {string}') do |string, string2|
-  # fill_in 'match_' + string, :with => string2 
   fill_in 'match_'+string, :with => string2 
 end
 
