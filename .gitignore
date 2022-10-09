@@ -36,3 +36,6 @@
 
 # Ignore coverage
 coverage
+
+.rubocop.yml
+.solargraph.yml
