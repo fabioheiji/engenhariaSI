@@ -1,9 +1,25 @@
- <% @matches.each do |m| %>
-  <p><%= m.name %></p>
-  <p><%= m.description %></p>
-  <p><%= m.address %></p>
-  <p><%= m.privateCourt %></p>
-  <p><%= m.limit %></p>
-  <p><%= m.halfCourt %></p>
-  <p><%= m.level %></p>
-<% end %>  
+ <h1>Partidas</h1>
+
+<section>
+  <h2>Pesquisar Partida</h2>
+  <%= form_tag(matches_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag(:search, params[:search], placeholder: "Nome ou endereço")%>
+    <%= submit_tag ("Pesquisar") %>
+  <% end %>
+</section>
+
+ <section>
+  <h2>Listagem</h2>
+  <% if @matches.present? %>
+    <% @matches.each do |m| %>
+      <article>
+        <h3><%= m.name %></h3>
+        <p><b>Local: </b><%= m.address %></p>
+        <p><b>Descrição: </b><%= m.description %></p><br>
+      </article>
+    <% end %>  
+  <% else %>
+    <p>Não há partidas correspondentes à pesquisa.</p>
+  <% end %>
+ </section>
+

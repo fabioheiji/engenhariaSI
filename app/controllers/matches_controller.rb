@@ -1,4 +1,7 @@
 class MatchesController < ApplicationController
+  def index
+    @matches = Match.search(params[:search])
+  end  
     
   def new
     @match = Match.new
@@ -15,10 +18,6 @@ class MatchesController < ApplicationController
     end
   end
  
-  def index
-    @matches = Match.all
-  end  
-
   def show
     @match = Match.find(params[:id])
   end
