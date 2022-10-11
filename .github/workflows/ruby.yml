@@ -43,9 +43,9 @@ jobs:
           POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
         run: |
-        bundle exec rails db:setup
-        bundle exec rspec
-        bundle exec cucumber
+          bundle exec rails db:setup
+          bundle exec rspec
+          bundle exec cucumber
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
