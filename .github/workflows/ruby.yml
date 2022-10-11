@@ -36,13 +36,13 @@ jobs:
           bundler-cache: true
 
       - name: Setup database
-        run: bundle exec rake db:prepare
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
+        run: bundle exec rails db:setup
 
       - name: Run unit tests
         run: bundle exec rspec
