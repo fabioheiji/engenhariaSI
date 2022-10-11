@@ -1,16 +1,25 @@
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: bighash
+  password: bighash
+  pool: 5
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: bighash_development
 
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: bighash_test
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: bighash_production
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>

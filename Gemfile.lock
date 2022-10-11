@@ -219,6 +219,7 @@ GEM
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
+    pg (1.4.4)
     phantomjs (2.1.1.0)
     public_suffix (5.0.0)
     puma (5.6.5)
@@ -352,8 +353,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.5.2-arm64-darwin)
-    sqlite3 (1.5.2-x86_64-linux)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     sync (0.5.0)
@@ -414,6 +413,7 @@ DEPENDENCIES
   jasmine
   jbuilder
   listen (~> 3.2)
+  pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)
   rspec-rails
@@ -427,7 +427,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets-rails
-  sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
   tzinfo-data
