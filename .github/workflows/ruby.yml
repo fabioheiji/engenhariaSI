@@ -35,24 +35,17 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Setup database
+      - name: Run tests
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
-        run: bundle exec rails db:setup
-
-      - name: Run unit tests
-        env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
-        run: bundle exec rspec
-
-      - name: Run integration tests
-        env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
-        run: bundle exec cucumber
+        run: |
+        bundle exec rails db:setup
+        bundle exec rspec
+        bundle exec cucumber
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
