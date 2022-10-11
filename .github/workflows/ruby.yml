@@ -15,7 +15,7 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_HOST: postgres
+          POSTGRES_HOST: localhost
           POSTGRES_USER: bighash
           POSTGRES_DB: bighash_test
           POSTGRES_PASSWORD: "bighash"
