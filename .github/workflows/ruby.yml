@@ -37,7 +37,6 @@ jobs:
 
       - name: Setup database
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -45,6 +44,8 @@ jobs:
         run: bundle exec rails db:setup
 
       - name: Run unit tests
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
         run: bundle exec rspec
 
       - name: Run integration tests
