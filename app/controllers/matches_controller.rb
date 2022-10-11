@@ -11,7 +11,9 @@ class MatchesController < ApplicationController
       redirect_to('/matches')
       
     else 
-      render 'new'
+      # render 'new'
+      render :new, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
  

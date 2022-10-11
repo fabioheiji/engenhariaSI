@@ -1,8 +1,13 @@
-<%
-=begin%>
- <%= form_with url: "create", model: @match, method: :post do |form| %> 
-<%
-=end%>
+<% if @match.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@match.errors.count, "erro") %> <%= pluralize(@match.errors.count, "impede") %> que a partida sejam gravados no banco de dados:</h2>
+    <ul>
+    <% @match.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_with model: @match  do |form| %>
     <%= form.label :name %>
