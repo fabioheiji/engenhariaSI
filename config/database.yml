@@ -65,4 +65,4 @@ production:
   <<: *default
   database: bighash_production
   username: bighash
-  password: <%= ENV["BIGHASH_DATABASE_PASSWORD"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
