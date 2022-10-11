@@ -15,10 +15,8 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_HOST: localhost
           POSTGRES_USER: bighash
           POSTGRES_PASSWORD: bighash
-          RAILS_ENV: test
         ports:
           - 5432:5432
         options: >-
@@ -38,6 +36,10 @@ jobs:
 
       - name: Setup database
         run: bundle exec rake db:prepare
+        env:
+          POSTGRES_USER: bighash
+          POSTGRES_PASSWORD: bighash
+          RAILS_ENV: test
 
       - name: Run unit tests
         run: bundle exec rspec
