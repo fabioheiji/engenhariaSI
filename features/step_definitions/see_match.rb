@@ -1,22 +1,21 @@
-Given("an existing match") do
-  @match = Match.create(name: 'Match', description: "Description", address: "Address", limit: "10", privateCourt: true, halfCourt: true, level: "Beginner")
+Given("that the user visits an existing room") do
+  match_id = Match.order("id").last.id
+  visit match_path(match_id.to_s)
 end
 
-Given("an non-existing match") do
-end
-
-When("the user visits the match {string}") do |string|
-  visit "/matches/#{string}"
+Given("that the user visits a non-existing room") do
+  nonexistent_id = 1000
+  visit match_path(nonexistent_id)
 end
 
 Then("the user see the match information") do
-  expect(page).to have_content("Name")
-  expect(page).to have_content("Description")
-  expect(page).to have_content("Address")
+  expect(page).to have_content("Rachao da EACH")
+  expect(page).to have_content("Rachao entre alunos da Each")
+  expect(page).to have_content("Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000")
   expect(page).to have_content("10")
-  expect(page).to have_content("t")
-  expect(page).to have_content("t")
-  expect(page).to have_content("Beginner")
+  expect(page).to have_content("true")
+  expect(page).to have_content("true")
+  expect(page).to have_content("livre")
 end
 
 Then("the user see a message that the match does not exist") do
