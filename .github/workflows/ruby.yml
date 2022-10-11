@@ -38,7 +38,7 @@ jobs:
       - name: Setup database
         run: bundle exec rake db:prepare
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
