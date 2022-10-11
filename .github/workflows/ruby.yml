@@ -13,12 +13,14 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14
+        image: postgres:11
         env:
           POSTGRES_HOST: localhost
           POSTGRES_USER: bighash
           POSTGRES_PASSWORD: bighash
-        ports: ["5432:5432"]
+          RAILS_ENV: test
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -35,7 +37,7 @@ jobs:
           bundler-cache: true
 
       - name: Setup database
-        run: bundle exec rails db:prepare
+        run: bundle exec rake db:prepare
 
       - name: Run unit tests
         run: bundle exec rspec
