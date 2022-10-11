@@ -13,11 +13,11 @@ jobs:
 
     services:
       db:
-        image: postgres:14
+        image: postgres:11
         env:
           POSTGRES_USER: bighash
           POSTGRES_DB: bighash_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: "bighash"
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
