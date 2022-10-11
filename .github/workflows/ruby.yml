@@ -16,8 +16,8 @@ jobs:
         image: postgres:11
         env:
           POSTGRES_HOST: localhost
-          POSTGRES_USER: bighash
-          POSTGRES_PASSWORD: bighash
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
@@ -40,8 +40,8 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           POSTGRES_HOST: localhost
-          POSTGRES_USER: bighash
-          POSTGRES_PASSWORD: bighash
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
 
       - name: Run unit tests
