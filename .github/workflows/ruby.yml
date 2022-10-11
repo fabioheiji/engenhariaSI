@@ -34,6 +34,9 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup database
+        run: bundle exec rails db:prepare
+
       - name: Run unit tests
         run: bundle exec rspec
 
