@@ -36,10 +36,3 @@ Feature: User navigate between pages
     Given that the user is on the registration page
     When the user click on "Login"
     Then the user should be redirected to the login page
-  
-
-
-
-
-
-  
