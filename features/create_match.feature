@@ -12,7 +12,7 @@ Feature: User creates a match in the app
         When the user fills in the 'match_level' field with "<level>"
         When the user click on save
         Then the data must have been saved in the database and "<name>", "<description>", "<address>", "<privateCourt>", "<limit>", "<halfCourt>", "<level>" should be the last instance 
-        Then all the data should habe been saved in the BD AND the user should see the "<name>", "<description>", "<address>", "<privateCourt>", "<limit>", "<halfCourt>", "<level>" created
+        Then all the data should have been saved in the BD AND the user should see the "<name>", "<description>" created
 
     Examples:
         | name           | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      |
