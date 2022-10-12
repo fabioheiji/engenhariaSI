@@ -1,25 +1,30 @@
- <h1>Partidas</h1>
-
 <section>
-  <h2>Pesquisar Partida</h2>
+  <h1>Matches</h1>
+  <%= link_to "New match", new_match_path %>
+  <hr>
+</section>
+<section>
+  <h2>Search</h2>
   <%= form_tag(matches_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag(:search, params[:search], placeholder: "Nome ou endereço")%>
-    <%= submit_tag ("Pesquisar") %>
+    <%= text_field_tag(:search, params[:search], placeholder: "Name or address")%>
+    <%= submit_tag ("Search") %>
   <% end %>
 </section>
-
  <section>
-  <h2>Listagem</h2>
   <% if @matches.present? %>
     <% @matches.each do |m| %>
       <article>
         <h3><%= m.name %></h3>
-        <p><b>Local: </b><%= m.address %></p>
-        <p><b>Descrição: </b><%= m.description %></p><br>
+        <p><b>Address: </b><%= m.address %></p>
+        <p><b>Description: </b><%= m.description %></p>
+        <%= link_to "More info", match_path(m.id)%><br><br>
       </article>
     <% end %>  
   <% else %>
-    <p>Não há partidas correspondentes à pesquisa.</p>
+    <% if params[:search].present? %>
+      <p>Match(es) not found.</p>
+    <% else %>
+      <p>There are no matches.</p>
+    <% end %>
   <% end %>
  </section>
-

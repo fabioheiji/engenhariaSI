@@ -12,9 +12,8 @@ class MatchesController < ApplicationController
     if @match.save 
       @matches = Match.all
       redirect_to('/matches')
-      
     else 
-      render 'new'
+      render 'index'
     end
   end
  
