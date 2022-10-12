@@ -23,7 +23,7 @@ Then('the data must have been saved in the database and {string}, {string}, {str
   expect(match.level).to eq(string7)
 end
 
-Then('all the data should habe been saved in the BD AND the user should see the {string}, {string} created') do |string, string2|
+Then('all the data should have been saved in the BD AND the user should see the {string}, {string} created') do |string, string2|
   expect(page).to have_content(string)
   expect(page).to have_content(string2)
 end
