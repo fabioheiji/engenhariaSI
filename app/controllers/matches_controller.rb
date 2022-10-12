@@ -13,7 +13,7 @@ class MatchesController < ApplicationController
       @matches = Match.all
       redirect_to('/matches')
     else 
-      render 'index'
+      render 'new'
     end
   end
  
