@@ -1,7 +1,7 @@
 # Big Hash
 
 [![Build Status](https://github.com/fabioheiji/engenhariaSI/actions/workflows/ruby.yml/badge.svg)](https://github.com/fabioheiji/engenhariaSI/actions/) [![!Maintainability](https://api.codeclimate.com/v1/badges/2fb60f1d746c705757e0/maintainability)](https://codeclimate.com/github/fabioheiji/engenhariaSI/)  
-[![Coverage Status](https://coveralls.io/repos/github/fabioheiji/engenhariaSI/badge.png?branch=master)](https://coveralls.io/github/fabioheiji/engenhariaSI?branch=master)  
+[![Coverage Status](https://coveralls.io/repos/github/fabioheiji/engenhariaSI/badge.svg?branch=master)](https://coveralls.io/github/fabioheiji/engenhariaSI?branch=master)
 [![Heroku Deploy](https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white)](https://bighash.herokuapp.com/) [![Pivotal Tracker](https://img.shields.io/badge/pivotaltracker-517A9E?style=flat&logo=pivotaltracker&logoColor=white)](https://www.pivotaltracker.com/n/projects/2603038)
 
 ## :book: About
