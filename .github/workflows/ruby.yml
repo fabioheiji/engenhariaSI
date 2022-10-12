@@ -10,6 +10,22 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,7 +36,16 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
-        run: bundle exec rake
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/bighash_test
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          RAILS_ENV: test
+        run: |
+          bundle exec rails db:setup
+          bundle exec rspec
+          bundle exec cucumber
 
       - name: Coveralls
         uses: coverallsapp/github-action@master

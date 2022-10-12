@@ -1,0 +1,9 @@
+table {
+  margin-bottom: 32px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
