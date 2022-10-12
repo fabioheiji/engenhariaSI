@@ -1,5 +1,9 @@
 Given('that the user is on the registration page') do
-    visit '/signup'
+    visit signup_path
+end
+
+Given('that the user is on the login page') do
+    visit login_path
 end
   
 When('the user fills in the {string} field with {string}') do |string, string2|
@@ -17,10 +21,6 @@ Then('the user must be saved in the database') do
     expect(user.password_digest).to be_truthy
     expect(user.birth_date).to eq(Date.new(1999, 10, 14))
     expect(user.position).to eq('Power Forward')
-end
-  
-Then('the user should be redirected to the login page') do
-    visit '/login'
 end
   
 When('the user leaves the {string} field empty') do |string|
