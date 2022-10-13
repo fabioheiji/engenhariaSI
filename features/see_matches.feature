@@ -20,6 +20,3 @@ Feature: User visits list of matches
     Given the user is in the matches page
     When the user click on create new match
     Then the user see the match creation page
-  
-  
-  

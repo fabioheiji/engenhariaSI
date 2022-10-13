@@ -1,4 +1,7 @@
 class MatchesController < ApplicationController
+  def index
+    @matches = Match.search(params[:search])
+  end  
     
   def new
     @match = Match.new
@@ -9,7 +12,6 @@ class MatchesController < ApplicationController
     if @match.save 
       @matches = Match.all
       redirect_to('/matches')
-      
     else 
       # render 'new'
       render :new, status: :unprocessable_entity, content_type: "text/html"
@@ -17,10 +19,6 @@ class MatchesController < ApplicationController
     end
   end
  
-  def index
-    @matches = Match.all
-  end  
-
   def show
     @match = Match.find(params[:id])
   end

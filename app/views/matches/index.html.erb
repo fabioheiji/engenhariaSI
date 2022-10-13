@@ -1,34 +1,30 @@
-<div>
+<section>
   <h1>Matches</h1>
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Address</th>
-      <th>Private Court</th>
-      <th>Limit</th>
-      <th>Half Court</th>
-      <th>Level</th>
-      <th>Actions</th>
-    </thead>
-    <tbody>
-      <% @matches.each do |match| %>
-        <tr>
-          <td><%= match.name %></td>
-          <td><%= match.description %></td>
-          <td><%= match.address %></td>
-          <td><%= match.privateCourt %></td>
-          <td><%= match.limit %></td>
-          <td><%= match.halfCourt %></td>
-          <td><%= match.level %></td>
-          <td><%= link_to 'View', match, id: "view-#{match.id}" %></td>
-        </tr>
-      <% end %>  
-    </tbody>
-  </table>
-  <span><%= link_to 'Create new match', new_match_path %></span>
-</div>
-
-
-
-
+  <%= link_to "New match", new_match_path %>
+  <hr>
+</section>
+<section>
+  <h2>Search</h2>
+  <%= form_tag(matches_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag(:search, params[:search], placeholder: "Name or address")%>
+    <%= submit_tag ("Search") %>
+  <% end %>
+</section>
+ <section>
+  <% if @matches.present? %>
+    <% @matches.each do |m| %>
+      <article>
+        <h3><%= m.name %></h3>
+        <p><b>Address: </b><%= m.address %></p>
+        <p><b>Description: </b><%= m.description %></p>
+        <%= link_to "View more", match_path(m.id), id: "view-#{m.id}"%><br><br>
+      </article>
+    <% end %>  
+  <% else %>
+    <% if params[:search].present? %>
+      <p>Match(es) not found.</p>
+    <% else %>
+      <p>There are no matches.</p>
+    <% end %>
+  <% end %>
+ </section>

@@ -21,7 +21,7 @@ When("when the user clicks see, on the first element of the table") do
 end
 
 When("the user click on create new match") do
-  click_on "Create new match"
+  click_on "New match"
 end
 
 Then("the user see the match details page") do

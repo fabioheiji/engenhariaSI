@@ -63,4 +63,3 @@ gem "simplecov"
 gem 'simplecov-lcov', '~> 0.8.0'
 
 gem "coveralls", require: false
-
