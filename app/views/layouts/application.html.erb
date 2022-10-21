@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <%= link_to "Log out", logout_path, method: :delete %>
+    <% end %>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
