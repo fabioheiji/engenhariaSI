@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            redirect_to '/login'
+            redirect_to login_path, notice: 'User created successfully'
         else
             render :new, status: :unprocessable_entity, content_type: "text/html"
             headers["Content-Type"] = "text/html"
