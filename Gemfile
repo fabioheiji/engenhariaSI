@@ -36,6 +36,7 @@ group :development, :test do
   gem "cucumber-rails", :require => false
   gem "database_cleaner"
   gem 'coveralls', require: false
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem "jasmine"
 end
 
