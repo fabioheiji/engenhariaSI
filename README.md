@@ -35,9 +35,9 @@ This project was deployed on Heroku. To see a demo, click **[here](https://bigha
 ### Local
 
 Make sure you have [Ruby](https://www.ruby-lang.org/en/documentation/installation/) and [SQLite3](https://www.sqlite.org/index.html) installed.
-Also check if you have rails installed with `rails --version` or install it with `gem install rails`.
+Also check your Rails installation with `rails --version` or install it with `gem install rails`.
 
-- Clone this repo on your machine
+- Clone this repo to your local machine
 - Install gems with `bin/bundle install`
 - Set up the database with `bin/rails db:setup`
 - Start the server with `bin/rails server`
