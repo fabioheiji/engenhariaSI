@@ -1,3 +1,4 @@
+@loginAsUser
 Feature: User creates a match in the app
   The user fills in a form with the match details and makes it available for other users to participate
 

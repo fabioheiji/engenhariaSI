@@ -1,4 +1,5 @@
 @oneMatchBefore
+@loginAsUser
 Feature: User visits list of matches
   The user can view, enter and create new matches
   

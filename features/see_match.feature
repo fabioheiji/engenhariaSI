@@ -1,4 +1,5 @@
 @oneMatchBefore
+@loginAsUser
 Feature: User visits specific match
   The user can see a specific match and its main information.
 
