@@ -8,7 +8,7 @@ Feature: User navigate between pages
     When the user click on "View matches"
     Then the user should be redirected to the matches page
 
-	@loginAsUser
+  @loginAsUser
   Scenario: user can go from match creation page to matches page
     Given the user is in the page's match registration
     When the user click on "View matches"
