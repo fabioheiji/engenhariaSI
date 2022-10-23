@@ -4,6 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+/.github/workflows/ruby.yml
+*yml
+
 # Ignore bundler config.
 /.bundle
 
@@ -39,3 +42,5 @@ coverage
 
 .rubocop.yml
 .solargraph.yml
+
+.DS_Store

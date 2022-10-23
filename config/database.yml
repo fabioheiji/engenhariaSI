@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: bighash
+  username: postgres
   password: bighash
   pool: 5
 
