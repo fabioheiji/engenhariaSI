@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
-    def home        
-    end
+  skip_before_action :require_login, only: [:home]
+
+  def home
+  end
 end
