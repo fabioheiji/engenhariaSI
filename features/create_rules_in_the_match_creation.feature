@@ -1,3 +1,4 @@
+@loginAsUser
 Feature: User try to create a match in the app but failed
   The user fills in a form with the match details and makes it available for other users to participate. In this case some fields should be mandatory.
 
