@@ -5,5 +5,7 @@ class User < ApplicationRecord
     validates :password_confirmation, presence: { message: 'É obrigatório informar a confirmação de senha!' }
     validates :birth_date, presence: { message: 'É obrigatório informar a data de nascimento!' }
 
+    has_and_belongs_to_many :matches
+
     has_secure_password
 end

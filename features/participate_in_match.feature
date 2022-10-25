@@ -5,4 +5,4 @@ Feature: User chooses to participate in a specific match in the app
         Given the user is in the page's list of matches in after search for a match
         When the user click on the match "Ibirapuera"
         When the user click on the button "Participar"        
-        Then the user id should be saved in the table "match_participants"
+        Then the user name should be listed in the match's participants list

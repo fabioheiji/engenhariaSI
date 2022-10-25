@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   get    'signup'  => 'users#new'
   post   'signup'  => 'users#create'
-
+  
+  post   'create_participate_in_match'   => 'matches#create_participate_in_match'
 end
 
