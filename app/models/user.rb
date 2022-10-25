@@ -6,4 +6,5 @@ class User < ApplicationRecord
     validates :birth_date, presence: { message: 'É obrigatório informar a data de nascimento!' }
 
     has_secure_password
+    has_many :matches, dependent: :destroy
 end

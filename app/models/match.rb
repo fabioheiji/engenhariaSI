@@ -4,6 +4,8 @@ class Match < ApplicationRecord
     validates :address, presence: { message: ": É obrigatório informar o endereço!" }
     validates :level, presence: { message: ": É obrigatório informar o nível!" }
     
+    belongs_to :user
+
     def self.search(search)
         if search
             where(["name LIKE ?","%#{search}%"])
