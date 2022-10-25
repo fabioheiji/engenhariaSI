@@ -1,5 +1,5 @@
 Given("the user is in the page's match registration") do
-    visit '/matches/new'
+  visit '/matches/new'
 end
 
 When('the user click on the {string} field selecting the checkbox to {string}') do |string, string2|

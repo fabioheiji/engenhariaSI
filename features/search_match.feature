@@ -1,3 +1,4 @@
+@loginAsUser
 Feature: Search matches
 
 Scenario: See all matches
