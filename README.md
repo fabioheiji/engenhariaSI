@@ -1,7 +1,7 @@
 # Big Hash
 
 [![Build Status](https://github.com/fabioheiji/engenhariaSI/actions/workflows/ruby.yml/badge.svg)](https://github.com/fabioheiji/engenhariaSI/actions/) [![!Maintainability](https://api.codeclimate.com/v1/badges/2fb60f1d746c705757e0/maintainability)](https://codeclimate.com/github/fabioheiji/engenhariaSI/) [![Coverage Status](https://coveralls.io/repos/github/fabioheiji/engenhariaSI/badge.svg?branch=master)](https://coveralls.io/github/fabioheiji/engenhariaSI?branch=master)  
-[![Heroku Deploy](https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white)](https://bighash.herokuapp.com/) [![Pivotal Tracker](https://img.shields.io/badge/pivotaltracker-517A9E?style=flat&logo=pivotaltracker&logoColor=white)](https://www.pivotaltracker.com/n/projects/2603038)
+[![Heroku Deploy](https://img.shields.io/badge/Heroku-430098?style=flat&logo=heroku&logoColor=white)](https://bighash.herokuapp.com/) [![Pivotal Tracker](https://img.shields.io/badge/pivotaltracker-517A9E?style=flat&logo=pivotaltracker&logoColor=white)](https://www.pivotaltracker.com/n/projects/2603038) ![License](https://img.shields.io/github/license/fabioheiji/engenhariasi)
 
 ## :book: About
 
@@ -26,6 +26,23 @@ This project is part of [ACH2006 @ EACH|USP](https://github.com/EngSoft-EACH-USP
 - User stories validation: [Cucumber](https://cucumber.io/) and [Capybara](http://teamcapybara.github.io/capybara/)
 - Automated code review: [CodeClimate](https://codeclimate.com/quality/)
 
-## :rocket: Demo
+## :rocket: Running the app
+
+### Demo
 
 This project was deployed on Heroku. To see a demo, click **[here](https://bighash.herokuapp.com/)**.
+
+### Local
+
+Make sure you have [Ruby](https://www.ruby-lang.org/en/documentation/installation/) and [SQLite3](https://www.sqlite.org/index.html) installed.
+Also check your Rails installation with `rails --version` or install it with `gem install rails`.
+
+- Clone this repo to your local machine
+- Install gems with `bin/bundle install`
+- Set up the database with `bin/rails db:setup`
+- Start the server with `bin/rails server`
+
+### Tests
+
+- For unit tests, simply execute `rspec`
+- For integration tests, execute `cucumber`
