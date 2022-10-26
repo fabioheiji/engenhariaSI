@@ -1,0 +1,17 @@
+<h1>Welcome, <%= @user.name %></h1>
+
+<h2>My matches</h2>
+ <section>
+  <% if @user.matches.present? %>
+    <% @user.matches.each do |m| %>
+      <article>
+        <h3><%= m.name %></h3>
+        <p><b>Address: </b><%= m.address %></p>
+        <p><b>Description: </b><%= m.description %></p>
+        <%= link_to "View more", match_path(m.id), id: "view-#{m.id}"%><br><br>
+      </article>
+    <% end %>  
+  <% else %>
+    <p>You have not created any matches yet.</p>
+  <% end %>
+ </section>
