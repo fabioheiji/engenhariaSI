@@ -9,6 +9,7 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
+    @match.user = User.find(session[:user_id])
     if @match.save 
       @matches = Match.all
       redirect_to('/matches')
@@ -24,6 +25,6 @@ class MatchesController < ApplicationController
 
   private
   def match_params
-    params.require(:match).permit(:name,:description,:address,:privateCourt,:limit,:halfCourt,:level)
+    params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level)
   end
 end

@@ -3,6 +3,7 @@ class Match < ApplicationRecord
     validates :description, presence: { message: ": É obrigatório informar a descrição!" }
     validates :address, presence: { message: ": É obrigatório informar o endereço!" }
     validates :level, presence: { message: ": É obrigatório informar o nível!" }
+    validates :user, presence: { message: ": É obrigatório estar logado!" }
     
     belongs_to :user
 
