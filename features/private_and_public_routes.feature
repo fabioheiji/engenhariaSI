@@ -14,7 +14,7 @@ Feature: Private and public routes
   Scenario: User logged in
     Given that the user is logged in
     Then the user should see the link for 'Home' in the header
-    Then the user should see the link for 'View matches' in the header
+    Then the user should see the link for 'Matches' in the header
     Then the user should see the link for 'Create match' in the header
     Then the user should see the link for 'Log out' in the header
     When the user tries to access the link '/matches'

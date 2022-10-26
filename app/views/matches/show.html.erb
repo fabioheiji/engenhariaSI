@@ -7,4 +7,16 @@
   <p><strong>Private court:</strong> <%= @match.privateCourt %></p>
   <p><strong>Half court:</strong> <%= @match.halfCourt %></p>
   <p><strong>Level:</strong> <%= @match.level %></p>
+
+  <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
+    <% if logged_in? %>
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+      <%= form.hidden_field :match_id, :value => params[:id] %>
+    <% end %>
+    <%= form.submit 'Participar'%>
+  <% end %>
+  <p>Participantes</p>
+  <% @match.users.each do |m| %>
+    <%= m.name %>
+  <% end %> 
 </section>
