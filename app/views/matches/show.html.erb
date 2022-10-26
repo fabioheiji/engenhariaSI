@@ -15,7 +15,6 @@
     <% end %>
     <%= form.submit 'Participar'%>
   <% end %>
-  <%= link_to 'View matches', matches_path %>
   <p>Participantes</p>
   <% @match.users.each do |m| %>
     <%= m.name %>

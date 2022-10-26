@@ -19,11 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_132524) do
     t.bigint "user_id", null: false
   end
 
-  create_table "match_participants", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "matches", force: :cascade do |t|
     t.string "name"
     t.string "description"
