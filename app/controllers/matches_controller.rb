@@ -19,6 +19,13 @@ class MatchesController < ApplicationController
     end
   end
  
+  def create_participate_in_match
+    @user = User.find(params['participate_in_match']['user_id'])
+    @match = Match.find(params['participate_in_match']['match_id'])
+    @match.users << @user
+    redirect_to '/matches/' + @match.id.to_s
+  end
+
   def show
     @match = Match.find(params[:id])
   end
@@ -27,4 +34,5 @@ class MatchesController < ApplicationController
   def match_params
     params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level)
   end
+
 end

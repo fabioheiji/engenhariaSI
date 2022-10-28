@@ -5,7 +5,7 @@ class Match < ApplicationRecord
     validates :level, presence: { message: ": É obrigatório informar o nível!" }
     validates :user, presence: { message: ": É obrigatório estar logado!" }
     
-    belongs_to :user
+    has_and_belongs_to_many :users
 
     def self.search(search)
         if search

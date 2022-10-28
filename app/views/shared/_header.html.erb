@@ -5,7 +5,7 @@
                 <li><%= link_to 'BigHash', root_path %></li>
                 <% if logged_in? %>
                     <li><%= link_to "My matches", user_path(current_user.id) %></li>
-                    <li><%= link_to "View matches", matches_path %></li>
+                    <li><%= link_to "View Matches", matches_path %></li>
                     <li><%= link_to "Create match", new_match_path %></li>
                     <li><%= link_to "Log out", logout_path, method: :delete %></li>
                 <% else %>
