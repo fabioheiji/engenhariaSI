@@ -5,7 +5,7 @@ Feature: Private and public routes
     Given that the user is not logged in
     Then the user should see the text "Home"
     Then the user should see the text "Entrar"
-    Then the user should see the text "Registrar"
+    Then the user should see the text "Cadastrar"
     When the user visits "/matches"
     When the user visits "/matches/new"
     Then the user should be in "/login"

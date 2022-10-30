@@ -9,6 +9,6 @@ Before('@loginAsUser') do
   visit '/login'
   fill_in 'session_email', :with => email
   fill_in 'session_password', :with => password
-  click_on 'Submit'
+  click_on 'Confirmar'
 end
 

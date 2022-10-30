@@ -19,5 +19,5 @@ Feature: User visits list of matches
 
   Scenario Outline: User wants to create a new match
     Given the user visits "/matches"
-    When the user click on "New match"
+    When the user click on "Criar nova partida"
     Then the user should be in "/matches/new"

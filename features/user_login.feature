@@ -8,9 +8,9 @@ Feature: Login
     | <name> | <email> | <password> | <password_confirmation> | <birth_date> | <position> |
     When the user fills in the "session_email" field with "<email>"
     And the user fills in the "session_password" field with "<password>"
-    And the user click on "Submit"
+    And the user click on "Confirmar"
     Then the user should be in "/matches"
-    And the user should see the text "Logged in successfully"
+    And the user should see the text "Entrou com sucesso"
     Examples:
     | name   | email            | password | password_confirmation | birth_date  | position | 
     | Fulano | fulano@gmail.com | 12345    | 12345                 | 01/01/2001  | PF       |
@@ -22,7 +22,7 @@ Feature: Login
     | <name> | <email> | <password> | <password_confirmation> | <birth_date> | <position> |
     When the user fills in the "session_email" field with "<email>"
     And the user fills in the "session_password" field with "<incorrect_password>"
-    And the user click on "Submit"
+    And the user click on "Confirmar"
     Then the user should be in "/login"
     And the user should see the text "Incorrect email or password"
     Examples:

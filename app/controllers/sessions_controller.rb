@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:password])
       log_in @user
-      redirect_to matches_path, notice: 'Logged in successfully'
+      redirect_to matches_path, notice: 'Entrou com sucesso'
     else
       flash.now.alert = 'Incorrect email or password'
       render :new, status: :unprocessable_entity
