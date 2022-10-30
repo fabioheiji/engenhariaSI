@@ -4,10 +4,6 @@ Then("the user must be a match table as follows") do |table|
     expect(page).to have_content(match[:name])
     expect(page).to have_content(match[:description])
     expect(page).to have_content(match[:address])
-    expect(page).to have_content(match[:privateCourt])
-    expect(page).to have_content(match[:halfCourt])
-    expect(page).to have_content(match[:limit])
-    expect(page).to have_content(match[:limit])
   end
 end
 

@@ -7,6 +7,7 @@
   <p><strong>Private court:</strong> <%= @match.privateCourt %></p>
   <p><strong>Half court:</strong> <%= @match.halfCourt %></p>
   <p><strong>Level:</strong> <%= @match.level %></p>
+  <p><strong>Starts at:</strong> <%= @match.starts_at %></p>
 
   <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
     <% if logged_in? %>
