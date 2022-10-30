@@ -3,22 +3,22 @@ Feature: Private and public routes
 
   Scenario: User not logged in
     Given that the user is not logged in
-    Then the user should see the link for 'Home' in the header
-    Then the user should see the link for 'Login' in the header
-    Then the user should see the link for 'Sign up' in the header
-    When the user tries to access the link '/matches'
-    When the user tries to access the link '/matches/new'
-    Then the user should be redirected to login page
-    And the user see the message "You must be logged in to access this section"
+    Then the user should see the text "Home"
+    Then the user should see the text "Login"
+    Then the user should see the text "Sign up"
+    When the user visits "/matches"
+    When the user visits "/matches/new"
+    Then the user should be in "/login"
+    And the user should see the text "You must be logged in to access this section"
   
   Scenario: User logged in
     Given that the user is logged in
-    Then the user should see the link for 'Home' in the header
-    Then the user should see the link for 'Matches' in the header
-    Then the user should see the link for 'Create match' in the header
-    Then the user should see the link for 'Log out' in the header
-    When the user tries to access the link '/matches'
-    When the user tries to access the link '/matches/new'
-    Then the user should be redirected to the desired page
+    Then the user should see the text "Home"
+    Then the user should see the text "Matches"
+    Then the user should see the text "Create match"
+    Then the user should see the text "Log out"
+    When the user visits "/matches"
+    When the user visits "/matches/new"
+    Then the user should be in "/matches/new"
   
   

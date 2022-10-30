@@ -5,8 +5,14 @@ Feature: User visits specific match
 
   Scenario: User successfully enters the match
     Given that the user visits an existing room
-    Then the user see the match information
+    Then the user should see the text "Rachao da EACH"
+    And the user should see the text "Rachao entre alunos da Each"
+    And the user should see the text "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000"
+    And the user should see the text "10"
+    And the user should see the text "true"
+    And the user should see the text "true"
+    And the user should see the text "livre"
 
   Scenario: User cannot enter the match - match does not exist
     Given that the user visits a non-existing room
-    Then the user see a message that the match does not exist
+    Then the user should see the text "The page you were looking for doesn't exist."

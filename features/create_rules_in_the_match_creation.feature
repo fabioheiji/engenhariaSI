@@ -3,16 +3,16 @@ Feature: User try to create a match in the app but failed
   The user fills in a form with the match details and makes it available for other users to participate. In this case some fields should be mandatory.
 
     Scenario Outline: Error match registration
-        Given the user is in the page's match registration - error registration
-        When the user fills in the 'match_name' field with "<nameError>" - error registration
-        When the user fills in the 'match_description' field with "<descriptionError>" - error registration
-        When the user fills in the 'match_address' field with "<addressError>" - error registration
-        When the user click on the 'match_privateCourt' field selecting the checkbox to "<privateCourtError>" - error registration
-        When the user fills in the 'match_limit' field with "<limitError>" - error registration
-        When the user click on the 'match_halfCourt' field selecting the checkbox to "<halfCourtError>" - error registration
-        When the user fills in the 'match_level' field with "<levelError>" - error registration
-        When the user click on save - error registration
-        Then I should see the error message "<messageError>" - error registration
+        Given the user visits "/matches/new"
+        When the user fills in the "match_name" field with "<nameError>"
+        When the user fills in the "match_description" field with "<descriptionError>"
+        When the user fills in the "match_address" field with "<addressError>"
+        When the user click on the "match_privateCourt" field selecting the checkbox to "<privateCourtError>" - error registration
+        When the user fills in the "match_limit" field with "<limitError>"
+        When the user click on the "match_halfCourt" field selecting the checkbox to "<halfCourtError>" - error registration
+        When the user fills in the "match_level" field with "<levelError>"
+        When the user click on "Salvar"
+        Then the user should see the text "<messageError>"
 
     Examples:
         | nameError           | descriptionError                           | addressError                                                                      | privateCourtError | limitError | halfCourtError  | levelError      | messageError                         |

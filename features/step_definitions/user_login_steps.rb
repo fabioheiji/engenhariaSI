@@ -5,10 +5,10 @@ Given("following user exists") do |table|
   end
 end
 
-Then("user must be kept on login page") do
-  expect(page).to have_current_path(login_path)
+Then("the user should see the text {string}") do |message|
+  expect(page).to have_content(message)
 end
 
-Then("the user see the message {string}") do |message|
-  expect(page).to have_content(message)
+Then("the user should not see the text {string}") do |message|
+  expect(page).not_to have_content(message)
 end
