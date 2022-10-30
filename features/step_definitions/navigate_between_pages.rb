@@ -1,19 +1,11 @@
-Given("that the user is in the homepage") do
-  visit '/'
-end
-
 When("the user click on {string}") do |link|
   click_on link
 end
 
-Then("the user should be redirected to the matches page") do
-  expect(page).to have_current_path(matches_path)
+Then("the user should be in {string}") do |path|
+  expect(page).to have_current_path(path)
 end
 
-Then("the user should be redirected to the sign up page") do
-  expect(page).to have_current_path(signup_path)
-end
-
-Then("the user should be redirected to the login page") do
-  expect(page).to have_current_path(login_path)
+Then("the user should not be in {string}") do |path|
+  expect(page).not_to have_current_path(path)
 end
