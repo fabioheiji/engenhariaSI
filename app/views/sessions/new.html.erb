@@ -1,21 +1,21 @@
-<h1>Login</h1>
+<h1>Entrar</h1>
 
 <%= form_with scope: :session, url: login_path do |f| %>
  
 <div>
-  <%= f.label :email %><br/>
+  <%= f.label :email, "Email" %><br/>
   <%= f.email_field :email%>
 </div>
 
 <div>
-  <%= f.label :password %><br/>
+  <%= f.label :password, "Senha" %><br/>
   <%= f.password_field :password%>
 </div>
 
 <div>
-  <%= f.submit "Submit" %>
+  <%= f.submit "Confirmar" %>
 </div>
 
 <% end %>
 
-<p>New user? <%= link_to "Sign up here", signup_path %></p>
+<p>Novo usuário? <%= link_to "Registre-se aqui", signup_path %></p>
