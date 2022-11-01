@@ -10,7 +10,7 @@ Feature: User creates a match in the app
         When the user click on the "match_privateCourt" field selecting the checkbox to "<privateCourt>"
         When the user fills in the "match_limit" field with "<limit>"
         When the user click on the "match_halfCourt" field selecting the checkbox to "<halfCourt>"
-        When the user fills in the "match_level" field with "<level>"
+        When the user selects in the "match_level" field with "<level>"
         When the user click on "Salvar"
         Then the data must have been saved in the database and "<name>", "<description>", "<address>", "<privateCourt>", "<limit>", "<halfCourt>", "<level>" should be the last instance 
         And the user should see the text "<name>"
@@ -18,5 +18,5 @@ Feature: User creates a match in the app
 
     Examples:
         | name           | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      |
-        | Rachao da EACH | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | livre      |
+        | Rachao da EACH | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      |
         | Rachao da Poli | Rachao entre alunos da Poli no CP USP | Prç. Prof. Rubião Meira, 61 - Vila Universitaria, São Paulo - SP, 05508-110  | 0            | 25    | 0          | Iniciante  |
