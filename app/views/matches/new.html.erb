@@ -25,6 +25,6 @@
     <%= form.label :halfCourt, "Meia quadra" %>
     <%= form.check_box :halfCourt %>
     <%= form.label :level, "Nível" %>
-    <%= form.text_field :level %>
+    <%= form.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado'])%>
     <%= form.submit 'Salvar'%>
 <% end %>

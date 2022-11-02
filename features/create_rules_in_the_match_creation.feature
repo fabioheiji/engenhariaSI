@@ -10,16 +10,16 @@ Feature: User try to create a match in the app but failed
         When the user click on the "match_privateCourt" field selecting the checkbox to "<privateCourtError>" - error registration
         When the user fills in the "match_limit" field with "<limitError>"
         When the user click on the "match_halfCourt" field selecting the checkbox to "<halfCourtError>" - error registration
-        When the user fills in the "match_level" field with "<levelError>"
+        When the user selects in the "match_level" field with "<levelError>"
         When the user click on "Salvar"
         Then the user should see the text "<messageError>"
 
     Examples:
         | nameError           | descriptionError                           | addressError                                                                      | privateCourtError | limitError | halfCourtError  | levelError      | messageError                         |
-        |                     | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         | 1               | livre           | É obrigatório informar o nome!       |
-        | Rachao da EACH      |                                            | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         | 1               | livre           | É obrigatório informar a descrição!  |
-        | Rachao da EACH      | Rachao entre alunos da Each                |                                                                                   | 1                 | 20         | 1               | livre           | É obrigatório informar o endereço!   |
-        | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          |                   | 20         | 1               | livre           |                                      |
-        | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 |            | 1               | livre           |                                      |
-        | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         |                 | livre           |                                      |
+        |                     | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         | 1               | Livre           | É obrigatório informar o nome!       |
+        | Rachao da EACH      |                                            | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         | 1               | Livre           | É obrigatório informar a descrição!  |
+        | Rachao da EACH      | Rachao entre alunos da Each                |                                                                                   | 1                 | 20         | 1               | Livre           | É obrigatório informar o endereço!   |
+        | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          |                   | 20         | 1               | Livre           |                                      |
+        | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 |            | 1               | Livre           |                                      |
+        | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         |                 | Livre           |                                      |
         | Rachao da EACH      | Rachao entre alunos da Each                | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000          | 1                 | 20         | 1               |                 | É obrigatório informar o nível!      |
