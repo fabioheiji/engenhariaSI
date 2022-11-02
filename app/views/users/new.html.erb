@@ -40,7 +40,7 @@
 
     <p>
         <%= form.label :position, "Posição do jogador" %><br>
-        <%= form.text_field :position %>
+        <%= form.select :position, options_for_select(['', 'Point Guard', 'Shooting Guard', 'Small Forward', 'Power Forward', 'Center'])%>
     </p>
 
     <p>
