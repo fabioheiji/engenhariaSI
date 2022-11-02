@@ -1,13 +1,12 @@
-<h1>Match <%= params[:id] %></h1>
+<h1><%= @match.name %></h1>
 <section>
-  <p><strong>Name:</strong> <%= @match.name %></p>
-  <p><strong>Description:</strong> <%= @match.description %></p>
-  <p><strong>Address:</strong> <%= @match.address %></p>
-  <p><strong>Limit:</strong> <%= @match.limit %></p>
-  <p><strong>Private court:</strong> <%= @match.privateCourt %></p>
-  <p><strong>Half court:</strong> <%= @match.halfCourt %></p>
-  <p><strong>Level:</strong> <%= @match.level %></p>
-  <p><strong>Starts at:</strong> <%= @match.starts_at %></p>
+  <p><strong>Descrição:</strong> <%= @match.description %></p>
+  <p><strong>Endereço:</strong> <%= @match.address %></p>
+  <p><strong>Limite de participantes:</strong> <%= @match.limit %></p>
+  <p><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
+  <p><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
+  <p><strong>Nível:</strong> <%= @match.level %></p>
+  <p><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
 
   <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
     <% if logged_in? %>
