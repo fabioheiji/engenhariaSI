@@ -4,6 +4,12 @@ class Match < ApplicationRecord
   validates :address, presence: { message: ": É obrigatório informar o endereço!" }
   validates :level, presence: { message: ": É obrigatório informar o nível!" }
   validates :starts_at, presence: { message: ": É obrigatório informar a data e horário de início!" }
+  validates(
+    :limit, 
+    presence: { message: ": É obrigatório informar o limite!" }, 
+    numericality: { only_integer: true, message: ": Insira apenas números" }, 
+    numericality: { in: 2..20, message: ": Limite de participantes deve estar entre 2 e 20" }
+  )
 
   has_and_belongs_to_many :users
 
