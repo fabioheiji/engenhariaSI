@@ -16,7 +16,9 @@
     <%= form.submit 'Participar'%>
   <% end %>
   <p>Participantes</p>
-  <% @match.users.each do |m| %>
-    <%= m.name %>
-  <% end %> 
+  <ul>
+    <% @match.users.each do |user| %>
+      <li><%= user.name %>, <%= user.position %></li>
+    <% end %> 
+  </ul>
 </section>
