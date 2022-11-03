@@ -31,7 +31,7 @@ class MatchesController < ApplicationController
 
   private
   def match_params
-    params.require(:match).permit(:name,:description,:address,:privateCourt,:limit,:halfCourt,:level)
+    params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level, :starts_at)
   end
 
 end

@@ -23,7 +23,7 @@ RSpec.describe Match, type: :model do
   end
 
   it 'realiza pesquisa' do
-    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner")
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner", starts_at: '2022-11-05T15:00')
     match = Match.search("EACH")
     expect(match).to exist
   end
