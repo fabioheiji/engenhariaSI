@@ -3,9 +3,9 @@ Before('@oneMatchBefore') do
 end
 
 Before('@loginAsUser') do
-  email = 'test@mail.com'
+  email = 'lebronjames@mail.com'
   password = '123456'
-  user = User.create(name: 'Test', email: email,  password: password, password_confirmation: password, birth_date: 'Thu, 14 Oct 1999', position: 'Power Forward')
+  user = User.create(name: 'LeBron James', email: email,  password: password, password_confirmation: password, birth_date: 'Thu, 14 Oct 1999', position: 'Small Forward (SF)')
   visit '/login'
   fill_in 'session_email', :with => email
   fill_in 'session_password', :with => password
