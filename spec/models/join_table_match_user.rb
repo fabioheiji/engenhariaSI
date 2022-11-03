@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Match, type: :model do
   context 'before user click participar' do
     it 'cannot have participants listed' do
-        match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner") 
+        match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre") 
         user = User.new(
             name: 'Usuário Fake', 
             email: 'usuario@mail.com', 
@@ -17,7 +17,7 @@ RSpec.describe Match, type: :model do
   end
   context 'after user click participar' do
     it 'the name of the user should be listed in first position if the list was empty' do
-        match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner") 
+        match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre") 
         user = User.new(
             name: 'Usuário Fake', 
             email: 'usuario@mail.com', 
@@ -30,7 +30,7 @@ RSpec.describe Match, type: :model do
         expect(match.users.first).to eq(user)
     end
     it 'the name of the user should be listed in last position if it was the last to join the match' do
-        match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner") 
+        match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre") 
         user1 = User.new(
             name: 'Usuário Fake 1', 
             email: 'usuario1@mail.com', 
@@ -53,8 +53,8 @@ RSpec.describe Match, type: :model do
         expect(match.users.last).to eq(user2)
     end
     it 'it should be possible to search for all the matches that the user has joined and vice versa' do
-        match0 = Match.create(name: 'Rachão da EACH0', description: 'Description0', address: 'USP Leste', level: "Beginner") 
-        match1 = Match.create(name: 'Rachão da EACH1', description: 'Description1', address: 'USP Leste', level: "Beginner") 
+        match0 = Match.create(name: 'Rachão da EACH0', description: 'Description0', address: 'USP Leste', level: "Livre") 
+        match1 = Match.create(name: 'Rachão da EACH1', description: 'Description1', address: 'USP Leste', level: "Livre") 
         user1 = User.new(
             name: 'Usuário Fake 1', 
             email: 'usuario1@mail.com', 

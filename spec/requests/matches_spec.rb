@@ -20,7 +20,7 @@ RSpec.describe "Matches", type: :request do
     end
 
     it "should create match" do
-      post matches_path, params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Beginner", starts_at: '2022-11-05T15:00' } }
+      post matches_path, params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Livre", starts_at: '2022-11-05T15:00' } }
       expect(response).to redirect_to(matches_path)
     end
 
