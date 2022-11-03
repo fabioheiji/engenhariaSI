@@ -22,7 +22,7 @@ class MatchesController < ApplicationController
     @user = User.find(params['participate_in_match']['user_id'])
     @match = Match.find(params['participate_in_match']['match_id'])
     @match.users << @user
-    redirect_to '/matches/' + @match.id.to_s
+    redirect_to match_path(@match.id)
   end
 
   def show
