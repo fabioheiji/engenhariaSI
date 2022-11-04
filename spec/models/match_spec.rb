@@ -6,19 +6,32 @@ RSpec.describe Match, type: :model do
     match.name = ""
     expect(match).not_to be_valid
   end
+
   it 'invalido sem descricao' do
     match = Match.new
     match.description = ""
     expect(match).not_to be_valid
   end
+
   it 'invalido sem endereco' do
     match = Match.new
     match.address = ""
     expect(match).not_to be_valid
   end
+
   it 'invalido sem nivel' do
     match = Match.new
     match.level = ""
+    expect(match).not_to be_valid
+  end
+
+  it 'invalido limite acima do maximo' do
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: '2022-11-05T15:00', limit: 25)
+    expect(match).not_to be_valid
+  end
+
+  it 'invalido limite abaixo do minimo' do
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: '2022-11-05T15:00', limit: 1)
     expect(match).not_to be_valid
   end
 

@@ -20,7 +20,7 @@ RSpec.describe "Matches", type: :request do
     end
 
     it "should create match" do
-      post matches_path, params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Livre", starts_at: '2022-11-05T15:00' } }
+      post matches_path, params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: 15, level: "Livre", starts_at: '2022-11-05T15:00' } }
       expect(response).to redirect_to(matches_path)
     end
 
@@ -52,7 +52,7 @@ RSpec.describe "Matches", type: :request do
     end
 
     it "returns http success" do
-      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: "10", privateCourt: true, halfCourt: true, level: "livre")
+      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, privateCourt: true, halfCourt: true, level: "livre")
       get "/matches/#{@match.id}"
       expect(response).to have_http_status(:success)
     end
