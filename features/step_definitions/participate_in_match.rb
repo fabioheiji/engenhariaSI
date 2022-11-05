@@ -17,13 +17,10 @@ When('the user click on the button {string}') do |string|
     click_on string
 end
 
-# Then('the user id should be saved in the table {string}') do |string|
-    # @userFake = User.create(name: 'User Fake', email: 'fake@gmail.com', birth_date: '01/01/2011', password_confirmation: '0123456789', password: '0123456789', position: 'armador')
-    # puts @userFake.id
-    # puts @matchIbirapuera.id
-    # MatchParticipant.create(user: @userFake.id, match: @matchIbirapuera.id)
-# end
-
 Then("the user name should be listed in the match's participants list") do
     expect(page).to have_content('User Fake')
+end
+
+Then('the user should not see their name appearing more than once') do
+    expect(page).to_not have_content('User Fake').twice
 end
