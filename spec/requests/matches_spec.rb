@@ -72,18 +72,11 @@ RSpec.describe "Matches", type: :request do
       expect(response).to have_http_status(:redirect)
     end
     
-    it "should not redirect" do
-      get "/matches/#{@match.id}"
-      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}}
-      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}}
-      expect(response).not_to have_http_status(:redirect)
-    end
-    
     it "should remove the user from a match" do
       get "/matches/#{@match.id}"
       post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}}
       post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}, commit: "Sair da Partida"}
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:redirect)
     end
 
   end
