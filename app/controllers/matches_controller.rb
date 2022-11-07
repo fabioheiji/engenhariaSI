@@ -18,22 +18,27 @@ class MatchesController < ApplicationController
     end
   end
  
-  def create_participate_in_match
+  def create_participate_in_match    
     @user = User.find(params['participate_in_match']['user_id'])
     @match = Match.find(params['participate_in_match']['match_id'])
-    if @match.users.include? @user
-      @message = "Você já está participando desta partida"
-      puts "Você já está participando desta partida"
-      render :show, status: :unprocessable_entity, content_type: "text/html"
-      headers["Content-Type"] = "text/html"
+    
+    
+    if @match.users.include? @user      
+      @match.users.delete(@user)
     else
       @match.users << @user
-      redirect_to '/matches/' + @match.id.to_s
     end
+    redirect_to '/matches/' + @match.id.to_s
   end
 
   def show
     @match = Match.find(params[:id])
+    @user = User.find(session[:user_id])
+    
+    @join_button_on = true
+    if @match.users.include? @user
+      @join_button_on = false
+    end
   end
 
   private
