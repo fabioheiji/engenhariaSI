@@ -8,5 +8,5 @@ class User < ApplicationRecord
     has_and_belongs_to_many :matches
 
     has_secure_password
-    has_many :matches, dependent: :destroy
+    has_many :owned_matches, dependent: :destroy, class_name: "Match"
 end

@@ -2,8 +2,8 @@
 
 <h2>My matches</h2>
  <section>
-  <% if @user.matches.present? %>
-    <% @user.matches.each do |m| %>
+  <% if @user.owned_matches.present? %>
+    <% @user.owned_matches.each do |m| %>
       <article>
         <h3><%= m.name %></h3>
         <p><b>Address: </b><%= m.address %></p>
