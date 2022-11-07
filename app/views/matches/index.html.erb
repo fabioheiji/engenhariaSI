@@ -14,7 +14,7 @@
   <% if @matches.present? %>
     <% @matches.each do |m| %>
       <article>
-        <h3><%= link_to m.name, 'matches/'+m.id.to_s %></h3>
+        <h3><%= link_to m.name, match_path(m.id) %></h3>
         <p><b>Endereço: </b><%= m.address %></p>
         <p><b>Descrição: </b><%= m.description %></p>
         <%= link_to "Ver mais", match_path(m.id), id: "view-#{m.id}"%><br><br>

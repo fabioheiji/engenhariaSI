@@ -1,3 +1,8 @@
+Given('the user visits last created match') do
+    match_id = (Match.order("id").last.id).to_s
+    visit match_path(match_id)
+end
+
 Given("the user is in the page's list of matches in after search for a match") do
     @userFake = User.create(name: 'User Fake', email: 'fake@gmail.com', birth_date: '01/01/2011', password_confirmation: '0123456789', password: '0123456789', position: 'armador')    
     visit '/login'

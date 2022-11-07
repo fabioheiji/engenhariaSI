@@ -11,9 +11,9 @@ Feature: User visits specific match
     And the user should see the text "10"
     And the user should see the text "true"
     And the user should see the text "true"
-    And the user should see the text "livre"
+    And the user should see the text "Livre"
     And the user should see the text "2022-11-05 15:00:00 UTC"
 
   Scenario: User cannot enter the match - match does not exist
     Given that the user visits a non-existing room
-    Then the user should see the text "The page you were looking for doesn't exist."
+    Then the user should see the text "A página que você está procurando não existe."
