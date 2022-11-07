@@ -10,16 +10,21 @@
 
   <hr/>
 
-  <% if @match.users.length() < @match.limit.to_i  %>
-    <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
-      <% if logged_in? %>
-        <%= form.hidden_field :user_id, :value => current_user.id %>
-        <%= form.hidden_field :match_id, :value => params[:id] %>
-      <% end %>
-      <%= form.submit 'Participar'%>
+  <%# <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> %>
+  <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
+    <% if logged_in? %>
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+      <%= form.hidden_field :match_id, :value => params[:id] %>
     <% end %>
-  <% else %>
-    <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p>
+    <% if @join_button_on %>
+      <% if @full_match %>
+        <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> 
+      <% else %>
+        <%= form.submit 'Participar'%>
+      <% end %>
+    <% else %>
+      <%= form.submit 'Sair da Partida'%>      
+    <% end %>
   <% end %>
 
   <p>Participantes</p>
