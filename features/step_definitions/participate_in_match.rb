@@ -7,7 +7,7 @@ Given("the user is in the page's list of matches in after search for a match") d
 end
 
 When('the user click on the match {string}') do |string|
-    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: "Beginner", user: @userFakee)
+    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: "Beginner", user: @userFake)
     visit '/matches'
     expect(page).to have_content('Ibirapuera')
     click_on string
