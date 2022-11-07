@@ -57,4 +57,27 @@ RSpec.describe "Matches", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+  
+  describe "POST create_participate_in_match" do
+    before(:each) do
+      @user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      post login_path, params: { session: { email: "john@email.com", password: "123" } }          
+      @match = Match.create(name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Beginner", starts_at: '2022-11-05T15:00')
+    end
+    
+    it "returns http redirect" do
+      get "/matches/#{@match.id}"
+      # post create_participate_in_match_path, params: { participate_in_match: {}}
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}}
+      expect(response).to have_http_status(:redirect)
+    end
+    
+    it "should remove the user from a match" do
+      get "/matches/#{@match.id}"
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}}
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}, commit: "Sair da Partida"}
+      expect(response).to have_http_status(:redirect)
+    end
+
+  end
 end
