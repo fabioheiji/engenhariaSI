@@ -14,38 +14,38 @@
 
 <%= form_with scope: :user, url: '/signup', local: true do |form| %>
     <p>
-        <%= form.label :name %><br>
+        <%= form.label :name, "Nome" %><br>
         <%= form.text_field :name %>
     </p>
     
     <p>
-        <%= form.label :email %><br>
+        <%= form.label :email, "Email" %><br>
         <%= form.email_field :email %>
     </p>
 
     <p>
-        <%= form.label :password %><br>
+        <%= form.label :password, "Senha" %><br>
         <%= form.password_field :password %>
     </p>
 
     <p>
-        <%= form.label :password_confirmation %><br>
+        <%= form.label :password_confirmation, "Confirmação da senha" %><br>
         <%= form.password_field :password_confirmation %>
     </p>
 
     <p>
-        <%= form.label :birth_date %><br>
+        <%= form.label :birth_date, "Data de nascimento" %><br>
         <%= form.date_field :birth_date %>
     </p>
 
     <p>
-        <%= form.label :position %><br>
-        <%= form.text_field :position %>
+        <%= form.label :position, "Posição do jogador" %><br>
+        <%= form.select :position, options_for_select(['', 'Point Guard', 'Shooting Guard', 'Small Forward', 'Power Forward', 'Center'])%>
     </p>
 
     <p>
         <%= form.submit 'Salvar' %>
     </p>
 
-    <p>Already registered? <%= link_to 'Login here', login_path %>
+    <p>Já possui uma conta? <%= link_to 'Entre aqui', login_path %>
 <% end %>

@@ -1,17 +1,9 @@
-Given('that the user is on the registration page') do
-    visit signup_path
+When('the user fills in the {string} field with {string}') do |input, value|
+    fill_in input, :with => value
 end
 
-Given('that the user is on the login page') do
-    visit login_path
-end
-  
-When('the user fills in the {string} field with {string}') do |string, string2|
-    fill_in string, :with => string2
-end
-  
-When('click save') do
-    click_on 'Salvar'
+When('the user selects in the {string} field with {string}') do |input, value|
+    select value, :from => input
 end
   
 Then('the user must be saved in the database') do
@@ -23,10 +15,3 @@ Then('the user must be saved in the database') do
     expect(user.position).to eq('Power Forward')
 end
   
-When('the user leaves the {string} field empty') do |string|
-    fill_in string, :with => ""
-end
-  
-Then('the user should see the error message {string}') do |string|
-    expect(page).to have_content(string)
-end

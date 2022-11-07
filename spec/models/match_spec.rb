@@ -44,20 +44,30 @@ RSpec.describe Match, type: :model do
   end
 
   it 'é válido com atributos válidos' do
-    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user)
+    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: '2022-11-05T15:00')
     expect(match).to be_valid
   end
 
+  it 'invalido limite acima do maximo' do
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: '2022-11-05T15:00', user: @user, limit: 25, starts_at: '2022-11-05T15:00')
+    expect(match).not_to be_valid
+  end
+
+  it 'invalido limite abaixo do minimo' do
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: '2022-11-05T15:00', user: @user, limit: 1, starts_at: '2022-11-05T15:00')
+    expect(match).not_to be_valid
+  end
+
   it 'realiza pesquisa' do
-    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner", user: @user)
-    result = Match.search("EACH")
-    expect(result).to match_array([match])
+    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: '2022-11-05T15:00')
+    match = Match.search("EACH")
+    expect(match).to exist
   end
 
   it 'retorna todas as partidas' do
-    match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner", user: @user) 
-    match1 = Match.create(name: 'Rachão do ICMC', description: 'Description1', address: 'Cidade Universitária', level: "Beginner", user: @user)
-    match2 = Match.create(name: 'Rachão do IME', description: 'Description2', address: 'USP São Carlos', level: "Beginner", user: @user)
+    match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", limit: 15) 
+    match1 = Match.create(name: 'Rachão do ICMC', description: 'Description1', address: 'Cidade Universitária', level: "Livre", limit: 15)
+    match2 = Match.create(name: 'Rachão do IME', description: 'Description2', address: 'USP São Carlos', level: "Livre", limit: 15)
     
     matches = Match.all
     results = Match.search(nil)
