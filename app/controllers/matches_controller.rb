@@ -22,7 +22,6 @@ class MatchesController < ApplicationController
     @user = User.find(params['participate_in_match']['user_id'])
     @match = Match.find(params['participate_in_match']['match_id'])
     
-    
     if @match.users.include? @user      
       @match.users.delete(@user)
     else
@@ -35,10 +34,8 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @user = User.find(session[:user_id])
     
-    @join_button_on = true
-    if @match.users.include? @user
-      @join_button_on = false
-    end
+    @join_button_on = !(@match.users.include? @user)
+    @full_match = @match.users.length() === @match.limit.to_i
   end
 
   private

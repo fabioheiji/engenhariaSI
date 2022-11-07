@@ -8,17 +8,25 @@
   <p><strong>Nível:</strong> <%= @match.level %></p>
   <p><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
 
+  <hr/>
+
+  <%# <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> %>
   <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
     <% if logged_in? %>
       <%= form.hidden_field :user_id, :value => current_user.id %>
       <%= form.hidden_field :match_id, :value => params[:id] %>
     <% end %>
     <% if @join_button_on %>
-      <%= form.submit 'Participar'%>
+      <% if @full_match %>
+        <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> 
+      <% else %>
+        <%= form.submit 'Participar'%>
+      <% end %>
     <% else %>
       <%= form.submit 'Sair da Partida'%>      
     <% end %>
   <% end %>
+
   <p>Participantes</p>
   <ul>
     <% @match.users.each do |user| %>
