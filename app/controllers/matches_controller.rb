@@ -8,8 +8,11 @@ class MatchesController < ApplicationController
   end
 
   def create
+    user = User.find(session[:user_id])
     @match = Match.new(match_params)
+    @match.user = user
     if @match.save 
+      @match.users << user
       @matches = Match.all
       redirect_to('/matches')
     else 

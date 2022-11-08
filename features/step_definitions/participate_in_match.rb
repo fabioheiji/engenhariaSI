@@ -4,7 +4,8 @@ Given('the user visits last created match') do
 end
 
 Given ('a newly created match with the maximum number of participants reached') do
-    @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 20, privateCourt: true, halfCourt: true, level: "Livre", starts_at: '2022-11-05T15:00')
+    @userFake = User.create(name: 'User Fake 2', email: 'fake@gmail.com', birth_date: '01/01/2011', password_confirmation: '0123456789', password: '0123456789', position: 'Power Forward')
+    @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 20, privateCourt: true, halfCourt: true, level: "Livre", starts_at: '2022-11-05T15:00', user: @userFake)
     for i in 1..20 do
         user = User.create(name: 'LeBron James', email: "lebron_james#{i}@email.com",  password: '123', password_confirmation: '123', birth_date: 'Thu, 14 Oct 1999', position: 'Small Forward (SF)')
         @match.users << user
@@ -20,7 +21,7 @@ Given("the user is in the page's list of matches in after search for a match") d
 end
 
 When('the user click on the match {string}') do |string|
-    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: 'Beginner', starts_at: '2022-11-05T15:00')
+    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: "Beginner", starts_at: '2022-11-05T15:00', user: @userFake)
     visit '/matches'
     expect(page).to have_content('Ibirapuera')
     click_on string

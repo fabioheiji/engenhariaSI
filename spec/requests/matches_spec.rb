@@ -60,9 +60,10 @@ RSpec.describe "Matches", type: :request do
   
   describe "POST create_participate_in_match" do
     before(:each) do
+      matchOwner = User.create(name: "Cleber", email: "cleber@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
       @user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
       post login_path, params: { session: { email: "john@email.com", password: "123" } }          
-      @match = Match.create(name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Beginner", starts_at: '2022-11-05T15:00')
+      @match = Match.create(name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Beginner", starts_at: '2022-11-05T15:00', user: matchOwner)
     end
     
     it "returns http redirect" do

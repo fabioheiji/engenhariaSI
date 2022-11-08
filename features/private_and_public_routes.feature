@@ -3,7 +3,7 @@ Feature: Private and public routes
 
   Scenario: User not logged in
     Given that the user is not logged in
-    Then the user should see the text "Home"
+    Then the user should see the text "BigHash"
     Then the user should see the text "Entrar"
     Then the user should see the text "Cadastrar"
     When the user visits "/matches"
@@ -13,7 +13,7 @@ Feature: Private and public routes
   
   Scenario: User logged in
     Given that the user is logged in
-    Then the user should see the text "Home"
+    Then the user should see the text "BigHash"
     Then the user should see the text "Partidas"
     Then the user should see the text "Criar partida"
     Then the user should see the text "Sair"
