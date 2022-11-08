@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     unless logged_in?
-      flash.now.alert = 'You must be logged in to access this section'
-      redirect_to login_path, notice: 'You must be logged in to access this section'
+      flash.now.alert = 'Você deve estar logado para acessar esta seção!'
+      redirect_to login_path, notice: 'Você deve estar logado para acessar esta seção!'
     end
   end
 end
