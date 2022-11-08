@@ -9,4 +9,4 @@ Scenario: See all my matches
 
 Scenario: There are no matches created by me
   Given the user click on 'Minhas partidas'
-  Then the user should see the text "You have not created any matches yet."
+  Then the user should see the text "Você ainda não criou uma partida."

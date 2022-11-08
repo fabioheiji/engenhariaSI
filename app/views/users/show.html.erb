@@ -1,6 +1,6 @@
-<h1>Welcome, <%= @user.name %></h1>
+<h1>Olá, <%= @user.name %></h1>
 
-<h2>My matches</h2>
+<h2>Minhas partidas</h2>
  <section>
   <% if @user.owned_matches.present? %>
     <% @user.owned_matches.each do |m| %>
@@ -12,6 +12,6 @@
       </article>
     <% end %>  
   <% else %>
-    <p>You have not created any matches yet.</p>
+    <p>Você ainda não criou uma partida.</p>
   <% end %>
  </section>
