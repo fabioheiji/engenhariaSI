@@ -40,7 +40,7 @@ RSpec.describe Match, type: :model do
   it 'não é válido sem criador' do
     match = Match.new
     match.user_id = nil
-    expect(match).not_to be_valid   match = Match.new
+    expect(match).not_to be_valid
   end
 
   it 'é válido com atributos válidos' do
