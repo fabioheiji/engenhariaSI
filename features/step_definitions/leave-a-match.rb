@@ -29,7 +29,3 @@ Given("the user is in the page's match that he is not participating") do
     expect(page).to have_content('Ibirapuera')
     click_on "Ibirapuera"
 end
-
-Then('the user should not see the button {string}') do |string|
-    expect(page).not_to have_button(string)
-end
