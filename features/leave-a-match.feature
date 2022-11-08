@@ -4,7 +4,7 @@ Feature: Button in the match page that allows the user to leave the match
 
     Scenario Outline: User exited successfully
         Given the user is in the page's match that he is already participating
-        When the user click on the button "Sair da Partida"        
+        When the user clicks on the button "Sair da Partida"        
         Then the user should not see their name appearing in the match participant list
 
     Scenario Outline: User try to leave a match that he was not participating

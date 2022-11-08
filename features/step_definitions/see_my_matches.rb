@@ -1,4 +1,4 @@
-Given('I have created matches') do
+Given('the user has created matches') do
     user = @user
     match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner", user: user, starts_at: '2022-11-05T15:00', limit: 10) 
     match1 = Match.create(name: 'Rachão do ICMC', description: 'Description1', address: 'Cidade Universitária', level: "Beginner", user: user, starts_at: '2022-11-05T15:00', limit: 10)
@@ -8,7 +8,7 @@ Given('I have created matches') do
     not_match = Match.create(name: 'Not Rachão da EACH', description: 'Not Description0', address: 'Not USP Leste', level: "Not Beginner", user: not_user) 
 end
 
-Then('I should see all my matches') do
+Then('the user should see all owned matches') do
     expect(page).to have_content('Rachão da EACH')
     expect(page).to have_content('Rachão do ICMC')
     expect(page).to have_content('Rachão do IME')

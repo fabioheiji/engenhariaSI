@@ -7,12 +7,12 @@ Feature: User try to create a match in the app but failed
         When the user fills in the "match_name" field with "<nameError>"
         When the user fills in the "match_description" field with "<descriptionError>"
         When the user fills in the "match_address" field with "<addressError>"
-        When the user click on the "match_privateCourt" field selecting the checkbox to "<privateCourtError>" - error registration
+        When the user clicks on the "match_privateCourt" field selecting the checkbox to "<privateCourtError>" - error registration
         When the user fills in the "match_limit" field with "<limitError>"
-        When the user click on the "match_halfCourt" field selecting the checkbox to "<halfCourtError>" - error registration
+        When the user clicks on the "match_halfCourt" field selecting the checkbox to "<halfCourtError>" - error registration
         When the user selects in the "match_level" field with "<levelError>"
         When the user fills in the "match_starts_at" field with "<matchStartsAtError>"
-        When the user click on "Salvar"
+        When the user clicks on "Salvar"
         Then the user should see the text "<messageError>"
 
     Examples:
