@@ -8,7 +8,11 @@
         <h3><%= m.name %></h3>
         <p><b>Address: </b><%= m.address %></p>
         <p><b>Description: </b><%= m.description %></p>
-        <%= link_to "View more", match_path(m.id), id: "view-#{m.id}"%><br><br>
+        <%= link_to "View more", match_path(m.id), id: "view-#{m.id}"%><br>
+        <%= link_to "Deletar partida", match_path(m.id), :id => "remove_#{m.id}", data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Confirmar deleção?"
+                  } %><br><br>
       </article>
     <% end %>  
   <% else %>

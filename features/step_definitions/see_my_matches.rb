@@ -1,6 +1,6 @@
 Given('the user has created matches') do
     user = @user
-    match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner", user: user, starts_at: '2022-11-05T15:00', limit: 10) 
+    match0 = Match.create(id: 0, name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Beginner", user: user, starts_at: '2022-11-05T15:00', limit: 10) 
     match1 = Match.create(name: 'Rachão do ICMC', description: 'Description1', address: 'Cidade Universitária', level: "Beginner", user: user, starts_at: '2022-11-05T15:00', limit: 10)
     match2 = Match.create(name: 'Rachão do IME', description: 'Description2', address: 'USP São Carlos', level: "Beginner", user: user, starts_at: '2022-11-05T15:00', limit: 10)
 
