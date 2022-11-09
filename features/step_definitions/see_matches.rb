@@ -12,7 +12,7 @@ When("when the user clicks see, on the first element of the table") do
   find("#view-#{match_id}").click
 end
 
-Then("the user see the match details page") do
+Then("the user sees the match details page") do
   match_id = (Match.order("id").last.id).to_s
   expect(page).to have_current_path(match_path(match_id))
 end

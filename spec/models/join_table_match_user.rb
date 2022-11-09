@@ -52,7 +52,7 @@ RSpec.describe Match, type: :model do
         expect(match.users.first).to eq(user1)
         expect(match.users.last).to eq(user2)
     end
-    it 'it should be possible to search for all the matches that the user has joined and vice versa' do
+    it 'it should be possible to search for all the matches the user has joined and vice versa' do
         match0 = Match.create(name: 'Rachão da EACH0', description: 'Description0', address: 'USP Leste', level: "Livre", limit: 10) 
         match1 = Match.create(name: 'Rachão da EACH1', description: 'Description1', address: 'USP Leste', level: "Livre", limit: 10) 
         user1 = User.new(

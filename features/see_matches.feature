@@ -15,9 +15,9 @@ Feature: User visits list of matches
   Scenario Outline: User want to see specific match
     Given the user visits "/matches"
     When when the user clicks see, on the first element of the table
-    Then the user see the match details page
+    Then the user sees the match details page
 
   Scenario Outline: User wants to create a new match
     Given the user visits "/matches"
-    When the user click on "Criar nova partida"
+    When the user clicks on "Criar nova partida"
     Then the user should be in "/matches/new"

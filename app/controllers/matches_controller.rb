@@ -20,6 +20,18 @@ class MatchesController < ApplicationController
       headers["Content-Type"] = "text/html"
     end
   end
+
+  def destroy
+    @match = Match.find(params[:id])
+
+    if @match.user = current_user
+      @match.destroy
+      redirect_to root_path, status: :see_other
+    else
+      redirect_to root_path, status: :forbidden
+    end
+
+  end
  
   def create_participate_in_match    
     @user = User.find(params['participate_in_match']['user_id'])

@@ -8,7 +8,7 @@ Feature: Login
     | <name> | <email> | <password> | <password_confirmation> | <birth_date> | <position> |
     When the user fills in the "session_email" field with "<email>"
     And the user fills in the "session_password" field with "<password>"
-    And the user click on "Confirmar"
+    And the user clicks on "Confirmar"
     Then the user should be in "/matches"
     And the user should see the text "Entrou com sucesso"
     Examples:
@@ -22,7 +22,7 @@ Feature: Login
     | <name> | <email> | <password> | <password_confirmation> | <birth_date> | <position> |
     When the user fills in the "session_email" field with "<email>"
     And the user fills in the "session_password" field with "<incorrect_password>"
-    And the user click on "Confirmar"
+    And the user clicks on "Confirmar"
     Then the user should be in "/login"
     And the user should see the text "Incorrect email or password"
     Examples:

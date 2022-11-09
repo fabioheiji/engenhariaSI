@@ -1,4 +1,4 @@
-When('the user click on the {string} field selecting the checkbox to {string}') do |string, string2|
+When('the user clicks on the {string} field selecting the checkbox to {string}') do |string, string2|
   if string2 == '1'
     find(:css, '#' + string).set(1)
   end

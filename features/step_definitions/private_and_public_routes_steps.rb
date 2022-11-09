@@ -1,4 +1,4 @@
-Given('that the user is not logged in') do
+Given('the user is not logged in') do
   visit '/'
 end
 
@@ -6,7 +6,7 @@ When('the user visits {string}') do |link|
   visit link
 end
 
-Given('that the user is logged in') do
+Given('the user is logged in') do
   email = 'test@mail.com'
   password = '123456'
 
