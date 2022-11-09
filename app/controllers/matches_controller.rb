@@ -23,9 +23,14 @@ class MatchesController < ApplicationController
 
   def destroy
     @match = Match.find(params[:id])
-    @match.destroy
 
-    redirect_to root_path, status: :see_other
+    if @match.user = current_user
+      @match.destroy
+      redirect_to root_path, status: :see_other
+    else
+      redirect_to root_path, status: :forbidden
+    end
+
   end
  
   def create_participate_in_match    

@@ -52,7 +52,7 @@ RSpec.describe "Matches", type: :request do
     end
 
     it "returns http success" do
-      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, privateCourt: true, halfCourt: true, level: "livre")
+      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: @user, privateCourt: true, halfCourt: true, level: "livre")
       get "/matches/#{@match.id}"
       expect(response).to have_http_status(:success)
     end
@@ -79,6 +79,30 @@ RSpec.describe "Matches", type: :request do
       post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}, commit: "Sair da Partida"}
       expect(response).to have_http_status(:redirect)
     end
+  end
 
+  describe "DELETE /match/:id with success" do
+    it "deletes an existing match successfully" do
+      user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+
+      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")
+      post login_path, params: { session: { email: "john@email.com", password: "123" } }    
+
+      delete "/matches/#{match.id}"
+
+      expect { Match.find(match.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  describe "DELETE /match/:id failed without authorization" do
+    it "deletes an existing match unsuccessfully" do
+      user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+
+      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")    
+
+      delete "/matches/#{match.id}"
+
+      expect(Match.find(match.id)).to eq(match)
+    end
   end
 end
