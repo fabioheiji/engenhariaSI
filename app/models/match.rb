@@ -20,6 +20,7 @@ class Match < ApplicationRecord
     if search
       where(["name LIKE ?","%#{search}%"])
         .or(where(["address LIKE ?","%#{search}%"]))
+        .or(where(["description LIKE ?","%#{search}%"])) 
     else
       Match.all
     end
