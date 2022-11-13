@@ -2,6 +2,9 @@
 
 <h2>Minhas partidas</h2>
  <section>
+  <br>
+  <hr>
+  <h3>Partidas Criadas por mim</h3>
   <% if @user.owned_matches.present? %>
     <% @user.owned_matches.each do |m| %>
       <article>
@@ -17,5 +20,26 @@
     <% end %>  
   <% else %>
     <p>Você ainda não criou uma partida.</p>
+  <% end %>
+
+  <br>
+  <hr>
+  <h3>Partidas em que estou participando<h3>
+  <% if @user.matches.present? %>
+    
+    <% @user.matches.each do |m| %>
+      <% if m.user != @user %>
+
+        <article>
+          <h3><%= m.name %></h3>
+          <p><b>Address: </b><%= m.address %></p>
+          <p><b>Description: </b><%= m.description %></p>
+          <%= link_to "View more", match_path(m.id), id: "view-#{m.id}"%><br>
+    
+        </article>
+        <% end %>
+      <% end %>
+  <% else %>
+    <p>Você ainda não entrou em uma partida.</p>
   <% end %>
  </section>
