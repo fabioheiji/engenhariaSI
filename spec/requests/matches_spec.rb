@@ -68,7 +68,6 @@ RSpec.describe "Matches", type: :request do
     
     it "returns http redirect" do
       get "/matches/#{@match.id}"
-      # post create_participate_in_match_path, params: { participate_in_match: {}}
       post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}}
       expect(response).to have_http_status(:redirect)
     end
@@ -81,28 +80,70 @@ RSpec.describe "Matches", type: :request do
     end
   end
 
-  describe "DELETE /match/:id with success" do
-    it "deletes an existing match successfully" do
-      user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+  describe "DELETE /matches/:id" do
+    before(:each) do
+      @user_match_owner = User.create(name: "Cleber", email: "cleber@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @user_not_match_owner = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: @user_match_owner, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")
+    end
 
-      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")
-      post login_path, params: { session: { email: "john@email.com", password: "123" } }    
+    it "deletes an existing match that user is owner" do
+      post login_path, params: { session: { email: @user_match_owner.email, password: @user_match_owner.password } }          
+      delete "/matches/#{@match.id}"
+      expect(response).to have_http_status(:see_other)
+      expect { Match.find(@match.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
 
-      delete "/matches/#{match.id}"
-
-      expect { Match.find(match.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    it "does not deletes an existing match - user is not owner" do
+      post login_path, params: { session: { email: @user_not_match_owner.email, password: @user_not_match_owner.password } }          
+      delete "/matches/#{@match.id}"
+      expect(response).to have_http_status(:forbidden)
+      expect(Match.find(@match.id)).to eq(@match)
     end
   end
 
-  describe "DELETE /match/:id failed without authorization" do
-    it "deletes an existing match unsuccessfully" do
-      user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+  describe "GET /matches/:id/edit" do
+    before(:each) do
+      @user_match_owner = User.create(name: "Cleber", email: "cleber@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @user_not_match_owner = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: @user_match_owner, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")
+    end
 
-      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")    
+    it "visits edit match page that user is owner" do
+      post login_path, params: { session: { email: @user_match_owner.email, password: @user_match_owner.password } }          
+      get "/matches/#{@match.id}/edit"
+      expect(response).to have_http_status(:success)
+    end
 
-      delete "/matches/#{match.id}"
+    it "does not visits edit match page that user is not owner" do
+      post login_path, params: { session: { email: @user_not_match_owner.email, password: @user_not_match_owner.password } }          
+      get "/matches/#{@match.id}/edit"
+      expect(response).to have_http_status(:forbidden)
+    end
+  end
 
-      expect(Match.find(match.id)).to eq(match)
+  describe "PUT /matches/:id" do
+    before(:each) do
+      @user_match_owner = User.create(name: "Cleber", email: "cleber@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @user_not_match_owner = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: @user_match_owner, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")
+    end
+
+    it "update match that user is owner" do
+      post login_path, params: { session: { email: @user_match_owner.email, password: @user_match_owner.password } }          
+      put "/matches/#{@match.id}", params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: 15, level: "Livre", starts_at: '2022-11-05T15:00' } }
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it "does not update match that user is not owner" do
+      post login_path, params: { session: { email: @user_not_match_owner.email, password: @user_not_match_owner.password } }          
+      put "/matches/#{@match.id}", params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: 15, level: "Livre", starts_at: '2022-11-05T15:00' } }
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "does not update match without params" do
+      post login_path, params: { session: { email: @user_match_owner.email, password: @user_match_owner.password } }          
+      expect { put "/matches/#{@match.id}" }.to raise_error(ActionController::ParameterMissing)
     end
   end
 end

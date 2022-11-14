@@ -16,7 +16,7 @@ class MatchesController < ApplicationController
   def update
     if is_owner?
       if @current_match.update(match_params)
-        redirect_to @current_match, notice: 'Partida editada com sucesso!'
+        redirect_to @current_match, notice: 'Partida editada com sucesso!', status: :no_content
       else
         render :edit, status: :unprocessable_entity
       end
