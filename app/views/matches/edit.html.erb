@@ -1,0 +1,32 @@
+<% if @current_match.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@current_match.errors.count, "erro") %> <%= pluralize(@current_match.errors.count, "impede") %> que a partida sejam gravados no banco de dados:</h2>
+    <ul>
+    <% @current_match.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1>Editar partida</h1>
+
+<%= form_with model: @current_match  do |form| %>
+    <%= form.label :name, "Nome" %>
+    <%= form.text_field :name %>
+    <%= form.label :description, "Descrição" %>
+    <%= form.text_field :description %>
+    <%= form.label :address, "Endereço" %>
+    <%= form.text_field :address %>
+    <%= form.label :privateCourt, "Quadra privada" %>
+    <%= form.check_box :privateCourt %>
+    <%= form.label :limit, "Limite de participantes" %>
+    <%= form.number_field :limit, in: 2..20 %>
+    <%= form.label :halfCourt, "Meia quadra" %>
+    <%= form.check_box :halfCourt %>
+    <%= form.label :level, "Nível" %>
+    <%= form.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado'], selected: @current_match.level  )%>
+    <%= form.label :starts_at, "Inicia-se" %>
+    <%= form.datetime_local_field :starts_at %>
+    <%= form.submit 'Salvar'%>
+<% end %>
