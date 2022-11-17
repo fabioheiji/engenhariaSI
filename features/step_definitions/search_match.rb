@@ -13,3 +13,8 @@ Then('the user should see all matches') do
     expect(page).to have_content('Rachão do ICMC')
     expect(page).to have_content('Rachão do IME')
 end
+
+When('the user checks the checkbox for {string}') do |string|
+    find(:css, '#' + string).set(1)
+end
+  
