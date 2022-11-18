@@ -51,6 +51,7 @@ class MatchesController < ApplicationController
     
     @join_button_on = !(@match.users.include? @user)
     @full_match = @match.users.length() === @match.limit.to_i
+    @can_kick_players = @match.user_id === @user.id
   end
 
   def kick_player
