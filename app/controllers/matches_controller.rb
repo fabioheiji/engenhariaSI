@@ -53,6 +53,18 @@ class MatchesController < ApplicationController
     @full_match = @match.users.length() === @match.limit.to_i
   end
 
+  def kick_player
+    @user = User.find(params['user_id'])
+    @match = Match.find(params['match_id'])
+    @player = User.find(params['player_id'])
+
+    if @match.users.include? @player      
+      @match.users.delete(@player)
+    end
+
+    redirect_to '/matches/' + @match.id.to_s
+  end
+
   private
   def match_params
     params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level, :starts_at)
