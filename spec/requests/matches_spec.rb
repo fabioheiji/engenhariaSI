@@ -20,7 +20,7 @@ RSpec.describe "Matches", type: :request do
     end
 
     it "should create match" do
-      post matches_path, params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: 15, level: "Livre", starts_at: '2022-11-05T15:00' } }
+      post matches_path, params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: 15, level: "Livre", starts_at: Time.now + 10 } }
       expect(response).to redirect_to(matches_path)
     end
 
@@ -63,7 +63,7 @@ RSpec.describe "Matches", type: :request do
       matchOwner = User.create(name: "Cleber", email: "cleber@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
       @user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
       post login_path, params: { session: { email: "john@email.com", password: "123" } }          
-      @match = Match.create(name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Beginner", starts_at: '2022-11-05T15:00', user: matchOwner)
+      @match = Match.create(name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: "8", level: "Beginner", starts_at: Time.now + 10, user: matchOwner)
     end
     
     it "returns http redirect" do
@@ -85,7 +85,7 @@ RSpec.describe "Matches", type: :request do
     it "deletes an existing match successfully" do
       user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
 
-      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")
+      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: Time.now + 10, level: "livre")
       post login_path, params: { session: { email: "john@email.com", password: "123" } }    
 
       delete "/matches/#{match.id}"
@@ -98,7 +98,7 @@ RSpec.describe "Matches", type: :request do
     it "deletes an existing match unsuccessfully" do
       user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
 
-      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: '2022-11-05T15:00', level: "livre")    
+      match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 10, user: user, privateCourt: true, halfCourt: true, starts_at: Time.now + 10, level: "livre")    
 
       delete "/matches/#{match.id}"
 

@@ -12,7 +12,6 @@ Feature: User visits specific match
     And the user should see the text "true"
     And the user should see the text "true"
     And the user should see the text "Livre"
-    And the user should see the text "2022-11-05 15:00:00 UTC"
 
   Scenario: User cannot enter the match - match does not exist
     Given the user visits a non-existing room
