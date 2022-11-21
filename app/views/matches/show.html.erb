@@ -1,26 +1,50 @@
 <h1><%= @match.name %></h1>
 <section>
-  <p><strong>Descrição:</strong> <%= @match.description %></p>
-  <p><strong>Endereço:</strong> <%= @match.address %></p>
-  <p><strong>Limite de participantes:</strong> <%= @match.limit %></p>
-  <p><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
-  <p><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
-  <p><strong>Nível:</strong> <%= @match.level %></p>
-  <p><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
-
-  <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
-    <% if logged_in? %>
-      <%= form.hidden_field :user_id, :value => current_user.id %>
-      <%= form.hidden_field :match_id, :value => params[:id] %>
-    <% end %>
-    <% if @join_button_on %>
-      <%= form.submit 'Participar'%>
-    <% else %>
-      <%= form.submit 'Sair da Partida'%>      
-    <% end %>
+  <% if @match.privateMatch %>
+    <p><strong>Partida privada</strong></p>
   <% end %>
-  <p>Participantes</p>
-  <% @match.users.each do |m| %>
-    <%= m.name %>
+ 
+  <p><strong>Descrição:</strong> <%= @match.description %></p>
+
+  <% if @match.privateMatch && @join_button_on %>
+    <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
+      <% if logged_in? %>
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+        <% if params["participate_in_match"].present? %>
+          <%= form.hidden_field :match_id, :value => params["participate_in_match"]['match_id'] %>
+        <% else %>
+          <%= form.hidden_field :match_id, :value => params[:id] %>
+        <% end %>
+      <% end %>
+      <%= form.label :privateMatchPassword, "Senha para partida privada" %>
+      <%= form.password_field :privateMatchPassword %>
+      <%= form.submit 'Participar'%>  
+      <% if @msg.present? %>
+        <p><strong><%= @msg %></p></strong>
+      <% end %>    
+    <% end %>
+  <% else %> 
+    <p><strong>Endereço:</strong> <%= @match.address %></p>
+    <p><strong>Limite de participantes:</strong> <%= @match.limit %></p>
+    <p><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
+    <p><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
+    <p><strong>Nível:</strong> <%= @match.level %></p>
+    <p><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
+
+    <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
+      <% if logged_in? %>
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+        <%= form.hidden_field :match_id, :value => params[:id] %>
+      <% end %>
+      <% if @join_button_on %>
+        <%= form.submit 'Participar'%>
+      <% else %>
+        <%= form.submit 'Sair da Partida'%>      
+      <% end %>
+    <% end %>
+    <p>Participantes</p>
+    <% @match.users.each do |m| %>
+      <%= m.name %>
+    <% end %> 
   <% end %> 
 </section>
