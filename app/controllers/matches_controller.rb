@@ -17,19 +17,10 @@ class MatchesController < ApplicationController
       headers["Content-Type"] = "text/html"
     end
   end
- 
-  # @user = User.find_by(email: params[:session][:email].downcase)
-
-  # if @user && @user.authenticate(params[:session][:password])
-  #   log_in @user
-  #   redirect_to matches_path, notice: 'Entrou com sucesso'
-  # else
-  #   flash.now.alert = 'Incorrect email or password'
-  #   render :new, status: :unprocessable_entity
-  # end
 
 
-  def create_participate_in_match    
+  def create_participate_in_match   
+    puts params 
     @user = User.find(params['participate_in_match']['user_id'])
     @match = Match.find(params['participate_in_match']['match_id'])
 

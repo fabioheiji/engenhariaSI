@@ -78,6 +78,38 @@ RSpec.describe "Matches", type: :request do
       post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id}, commit: "Sair da Partida"}
       expect(response).to have_http_status(:redirect)
     end
-
   end
+
+  describe "POST create_participate_in_match privateMatch" do
+    before(:each) do
+      @user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      post login_path, params: { session: { email: "john@email.com", password: "123" } }          
+      @match = Match.create(name: "Rachao da EACH 2", description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", privateCourt: true, limit: 20, halfCourt: true, level: "Livre", starts_at: "2022-10-30T09:00", privateMatch: true, privateMatchPassword: "12345")
+    end
+    
+    it "returns http redirect" do
+      get "/matches/#{@match.id}"
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id, privateMatchPassword: @match.privateMatchPassword}}
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it "returns message error with wrong password" do
+      get "/matches/#{@match.id}"
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id, privateMatchPassword: "1111"}}
+      expect(response).to have_http_status(422)
+    end
+
+    it "returns message error with password in blank" do
+      get "/matches/#{@match.id}"
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id, privateMatchPassword: ""}}
+      expect(response).to have_http_status(422)
+    end
+    
+    it "should remove the user from a private match" do
+      get "/matches/#{@match.id}"
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @user.id, match_id: @match.id, privateMatchPassword: @match.privateMatchPassword}, commit: "Sair da Partida"}
+      expect(response).to have_http_status(:redirect)
+    end
+
+  end  
 end
