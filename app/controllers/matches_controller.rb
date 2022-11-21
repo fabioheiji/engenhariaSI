@@ -1,6 +1,11 @@
 class MatchesController < ApplicationController
   def index
     @matches = Match.search(params[:search])
+
+    @matches = @matches.filter_by_starts_at(params[:starts_at]) if params[:starts_at].present? 
+    @matches = @matches.filter_by_limit(params[:limit]) if params[:limit].present?
+    @matches = @matches.filter_by_level(params[:level]) if params[:level].present?
+    @matches = @matches.filter_by_half_court(params[:half_court]) if params[:half_court].present?
   end  
     
   def new
@@ -30,7 +35,6 @@ class MatchesController < ApplicationController
     else
       redirect_to root_path, status: :forbidden
     end
-
   end
  
   def create_participate_in_match    
@@ -57,5 +61,4 @@ class MatchesController < ApplicationController
   def match_params
     params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level, :starts_at)
   end
-
 end
