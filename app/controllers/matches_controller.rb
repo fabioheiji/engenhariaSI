@@ -69,6 +69,19 @@ class MatchesController < ApplicationController
     
     @join_button_on = !(@match.users.include? @user)
     @full_match = @match.users.length() === @match.limit.to_i
+    @can_kick_players = @match.user_id === @user.id
+  end
+
+  def kick_player
+    @user = User.find(params['user_id'])
+    @match = Match.find(params['match_id'])
+    @player = User.find(params['player_id'])
+
+    if @match.users.include? @player      
+      @match.users.delete(@player)
+    end
+
+    redirect_to '/matches/' + @match.id.to_s
   end
 
   private
