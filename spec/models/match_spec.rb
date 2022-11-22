@@ -44,22 +44,22 @@ RSpec.describe Match, type: :model do
   end
 
   it 'é válido com atributos válidos' do
-    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: '2022-11-05T15:00')
+    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: Time.now + 10)
     expect(match).to be_valid
   end
 
   it 'invalido limite acima do maximo' do
-    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: '2022-11-05T15:00', user: @user, limit: 25, starts_at: '2022-11-05T15:00')
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: Time.now, user: @user, limit: 25, starts_at: Time.now + 10)
     expect(match).not_to be_valid
   end
 
   it 'invalido limite abaixo do minimo' do
-    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: '2022-11-05T15:00', user: @user, limit: 1, starts_at: '2022-11-05T15:00')
+    match = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: "Livre", starts_at: Time.now + 10, user: @user, limit: 1, starts_at: Time.now + 10)
     expect(match).not_to be_valid
   end
 
   it 'realiza pesquisa' do
-    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: '2022-11-05T15:00')
+    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: Time.now + 10)
     match = Match.search("EACH")
     expect(match).to exist
   end
@@ -74,5 +74,10 @@ RSpec.describe Match, type: :model do
 
     expect(results).to all(be_valid)
     expect(results).to eq(matches)
+  end
+
+  it 'invalido data de inicio menor que a data atual' do
+    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: Time.now - 10)
+    expect(match).not_to be_valid
   end
 end

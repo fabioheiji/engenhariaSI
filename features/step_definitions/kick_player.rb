@@ -9,7 +9,7 @@ Given('that the user visits one of his matches') do
   fill_in 'session_password', :with => password
   click_on 'Confirmar'
 
-  @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 20, privateCourt: true, halfCourt: true, level: "Livre", starts_at: '2022-11-05T15:00', user: @userFake)
+  @match = Match.create(name: 'Rachao da EACH', description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", limit: 20, privateCourt: true, halfCourt: true, level: "Livre", starts_at: Time.now + 20, user: @userFake)
   user = User.create(name: 'LeBron James', email: "lebron_james@email.com",  password: '123', password_confirmation: '123', birth_date: 'Thu, 14 Oct 1999', position: 'Small Forward (SF)')
   @match.users << user
   match_id = @match.id.to_s
@@ -27,7 +27,7 @@ end
 
 Given('that the user is on the page of a match that he does not own') do
   @userFake2 = User.create(name: 'User Fake 2', email: 'fake3@gmail.com', birth_date: '01/01/2011', password: '123456', password_confirmation: '123456', position: 'Power Forward')
-  @match2 = Match.create(name: 'Rachao da POLI', description: "Rachao entre alunos da Poli", address: "Butantã, SP", limit: 20, privateCourt: true, halfCourt: true, level: "Livre", starts_at: '2022-11-05T15:00', user: @userFake2)
+  @match2 = Match.create(name: 'Rachao da POLI', description: "Rachao entre alunos da Poli", address: "Butantã, SP", limit: 20, privateCourt: true, halfCourt: true, level: "Livre", starts_at: Time.now + 10, user: @userFake2)
 
   for i in 1..3 do
     user = User.create(name: 'LeBron James', email: "lebron_james#{i}@email.com",  password: '123', password_confirmation: '123', birth_date: 'Thu, 14 Oct 1999', position: 'Small Forward (SF)')
