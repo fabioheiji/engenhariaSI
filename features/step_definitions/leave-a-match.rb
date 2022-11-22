@@ -4,7 +4,7 @@ Given("the user is in the page's match that he is already participating") do
     fill_in 'session_email', :with => 'fake@gmail.com'
     fill_in 'session_password', :with => '0123456789'
     click_on 'Confirmar'
-    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: 'Iniciante', starts_at: '2022-11-05T15:00', limit: 15, user: @userFake)
+    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: 'Iniciante', starts_at: Time.now + 10, limit: 15, user: @userFake)
     visit '/matches'
     expect(page).to have_content('Ibirapuera')
     click_on "Ibirapuera"
@@ -24,7 +24,7 @@ Given("the user is in the page's match that he is not participating") do
     fill_in 'session_email', :with => 'fake@gmail.com'
     fill_in 'session_password', :with => '0123456789'
     click_on 'Confirmar'
-    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: 'Iniciante', starts_at: '2022-11-05T15:00', limit: 10, user: @matchOwner)
+    @matchIbirapuera = Match.create(name: 'Ibirapuera', description: 'Description0', address: 'USP Leste', level: 'Iniciante', starts_at: Time.now + 10, limit: 10, user: @matchOwner)
     visit '/matches'
     expect(page).to have_content('Ibirapuera')
     click_on "Ibirapuera"

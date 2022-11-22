@@ -19,4 +19,13 @@ RSpec.describe "Users", type: :request do
       expect(response).not_to redirect_to(login_path)
     end
   end
+
+  describe "GET /users/:id" do
+    it "return http success" do
+      @user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      post login_path, params: { session: { email: "john@email.com", password: "123" } }    
+      get "/users/#{@user.id}"
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

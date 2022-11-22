@@ -12,6 +12,24 @@ class MatchesController < ApplicationController
     @match = Match.new
   end
 
+  def edit
+    if !is_owner?
+      redirect_to root_path, status: :forbidden
+    end
+  end
+
+  def update
+    if is_owner?
+      if @current_match.update(match_params)
+        redirect_to @current_match, notice: 'Partida editada com sucesso!', status: :no_content
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    else
+      redirect_to root_path, status: :forbidden
+    end
+  end
+
   def create
     user = User.find(session[:user_id])
     @match = Match.new(match_params)
@@ -19,7 +37,7 @@ class MatchesController < ApplicationController
     if @match.save 
       @match.users << user
       @matches = Match.all
-      redirect_to('/matches')
+      redirect_to matches_path, notice: "Partida criada com sucesso!"
     else 
       render :new, status: :unprocessable_entity, content_type: "text/html"
       headers["Content-Type"] = "text/html"
@@ -29,7 +47,7 @@ class MatchesController < ApplicationController
   def destroy
     @match = Match.find(params[:id])
 
-    if @match.user = current_user
+    if is_owner?
       @match.destroy
       redirect_to root_path, status: :see_other
     else
@@ -55,6 +73,19 @@ class MatchesController < ApplicationController
     
     @join_button_on = !(@match.users.include? @user)
     @full_match = @match.users.length() === @match.limit.to_i
+    @can_kick_players = @match.user_id === @user.id
+  end
+
+  def kick_player
+    @user = User.find(params['user_id'])
+    @match = Match.find(params['match_id'])
+    @player = User.find(params['player_id'])
+
+    if @match.users.include? @player      
+      @match.users.delete(@player)
+    end
+
+    redirect_to '/matches/' + @match.id.to_s
   end
 
   private
