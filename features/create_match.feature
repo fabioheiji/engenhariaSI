@@ -18,6 +18,6 @@ Feature: User creates a match in the app
         And the user should see the text "<description>"
 
     Examples:
-        | name           | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      | starts_at         |
-        | Rachao da EACH | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2023-10-30T09:00  |
-        | Rachao da Poli | Rachao entre alunos da Poli no CP USP | Prç. Prof. Rubião Meira, 61 - Vila Universitaria, São Paulo - SP, 05508-110  | 0            | 15    | 0          | Iniciante  | 2023-11-05T15:00  |
+        | name           | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      | starts_at                            |
+        | Rachao da EACH | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2023-10-30T09:00:00.000000000 -0300  |
+        | Rachao da Poli | Rachao entre alunos da Poli no CP USP | Prç. Prof. Rubião Meira, 61 - Vila Universitaria, São Paulo - SP, 05508-110  | 0            | 15    | 0          | Iniciante  | 2023-11-05T15:00:00.000000000 -0300  |

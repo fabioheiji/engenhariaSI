@@ -27,6 +27,6 @@
     <%= form.label :level, "Nível" %>
     <%= form.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado'])%>
     <%= form.label :starts_at, "Inicia-se" %>
-    <%= form.datetime_local_field :starts_at, min: Time.now().to_s  %>
+    <%= form.datetime_local_field :starts_at, min: Time.now().to_s.slice(0,16)  %>
     <%= form.submit 'Salvar'%>
 <% end %>

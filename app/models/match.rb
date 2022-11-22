@@ -4,6 +4,7 @@ class Match < ApplicationRecord
   validates :address, presence: { message: ": É obrigatório informar o endereço!" }
   validates :level, presence: { message: ": É obrigatório informar o nível!" }
   validates :starts_at, presence: { message: ": É obrigatório informar a data e horário de início!" }
+  validates_datetime :starts_at, after: lambda { Time.current }
 
   belongs_to :user
   has_and_belongs_to_many :users
@@ -14,8 +15,6 @@ class Match < ApplicationRecord
     numericality: { only_integer: true, message: ": Insira apenas números" }, 
     numericality: { in: 2..20, message: ": Limite de participantes deve estar entre 2 e 20" }
   )
-
-  validate :start_date_is_earlier_than_now?
 
   scope :filter_by_starts_at, -> (time) { where starts_at: time.. }
   scope :filter_by_limit, -> (limit) { where limit: limit }
@@ -28,12 +27,6 @@ class Match < ApplicationRecord
         .or(where(["LOWER(address) LIKE LOWER(?)","%#{search}%"]))
     else
       Match.all
-    end
-  end
-
-  def start_date_is_earlier_than_now?
-    if starts_at.present? && starts_at.past?
-      errors.add :starts_at, "Data de início precisar ser maior ou igual a agora"
     end
   end
 end
