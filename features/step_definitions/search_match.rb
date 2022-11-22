@@ -16,4 +16,8 @@ end
 
 When('the user checks the {string} for {string}') do |element, string|
     find(:css, '#' + string).set(1)
+end 
+
+When('the user fills in the {string} field with now + {string}') do |field, addition|
+    fill_in field, :with => Time.now +  addition.to_i
 end

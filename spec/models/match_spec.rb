@@ -82,7 +82,7 @@ RSpec.describe Match, type: :model do
     match2 = Match.create(name: 'Rachão do IME', description: 'Description2', address: 'USP São Carlos', level: 'Iniciante', halfCourt: 0, starts_at:  Time.now + 10000, limit: 4, user: @user)
 
     matches = [match1, match2]
-    result = Match.filter_by_starts_at("2021-11-05T15:00")
+    result = Match.filter_by_starts_at(Time.now + 999)
     expect(result).to eq(matches)
   end
 

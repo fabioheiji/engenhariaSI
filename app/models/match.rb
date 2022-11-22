@@ -29,7 +29,7 @@ class Match < ApplicationRecord
     else
       Match.all
     end
-  else
+  end
 
   def start_date_is_earlier_than_now?
     if starts_at.present? && starts_at.past?
