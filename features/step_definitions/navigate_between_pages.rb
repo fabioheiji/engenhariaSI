@@ -1,4 +1,4 @@
-When("the user clicks on {string}") do |link|
+When("the user clicks on {string}") do |link|  
   click_on link
 end
 

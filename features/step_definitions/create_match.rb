@@ -3,6 +3,11 @@ When('the user clicks on the {string} field selecting the checkbox to {string}')
     find(:css, '#' + string).set(1)
   end
 end
+When('the user click on the {string} field selecting the checkbox to {string}') do |string, string2|
+  if string2 == '1'
+    find(:css, '#' + string).set(1)
+  end
+end
 
 Then('the data must have been saved in the database and {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} should be the last instance') do |string, string2, string3, string4, string5, string6, string7, string8|
   match = Match.order("id").last
