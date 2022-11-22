@@ -47,5 +47,10 @@
         </li>
       <% end %> 
   </ul>
+
+  <% if !@full_match %>
+    <button id="copy-to-clipboard">Compartilhar partida</button>
+    <span id="tooltip" style="display: none">URL da partida copiada! Envie para seus amigos.</span>
+  <% end %>
 </section>
 
