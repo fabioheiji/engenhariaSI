@@ -30,8 +30,22 @@
   <p>Participantes</p>
   <ul>
     <% @match.users.each do |user| %>
-      <li><%= user.name %> - <%= user.position %></li>
-    <% end %> 
+        <li id="">
+          <%= user.name %> - <%= user.position %>
+          <% if @can_kick_players %>
+            <% if @user.id != user.id %>
+              <%= form_with url: kick_player_path, :html => { :style => 'display: inline-block;' } do |form| %>    
+                <% if logged_in? %>
+                  <%= form.hidden_field :user_id, :value => current_user.id %>
+                  <%= form.hidden_field :match_id, :value => params[:id] %>
+                  <%= form.hidden_field :player_id, :value => user.id %>
+                <% end %>
+                <%= form.submit 'Expulsar participante'%>
+              <% end %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %> 
   </ul>
 
   <% if !@full_match %>
@@ -39,3 +53,4 @@
     <span id="tooltip" style="display: none">URL da partida copiada! Envie para seus amigos.</span>
   <% end %>
 </section>
+

@@ -1,0 +1,37 @@
+<%= form_with model: @match, method: "get", id:"search-form" do |f| %>
+    <div>
+        <%= f.label :search, "Nome ou endereço da partida", style: "display:none;" %>
+        <%= f.text_field :search, placeholder: "Nome ou endereço da partida" %>
+    </div>
+    <br>
+    <div>
+        <div>
+            <%= f.label :starts_at, "A partir da data:" %>
+        </div>
+        <%= f.datetime_local_field :starts_at %>
+    </div>
+    <br>
+    <div>
+        <%= f.label :limit, "Nº participantes:" %>
+        <%= f.number_field :limit, in: 2..20 %>
+    </div>
+    <br>
+    <div>
+        <%= f.label :level, "Dificuldade:" %>
+        <%= f.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado'])%>
+    </div>
+    <br>
+    <div>
+        <div>
+            <%= f.label :half_court, "Meia quadra:" %>
+        </div>
+        <%= f.radio_button :half_court, true %>
+        <%= f.label :half_court, "Sim", value: true %>
+        <%= f.radio_button :half_court, false %>
+        <%= f.label :half_court, "Não", value: false %>
+    </div>
+    <br>
+    <div>
+        <%= f.submit "Pesquisar" %>
+    </div>
+    <% end %>
