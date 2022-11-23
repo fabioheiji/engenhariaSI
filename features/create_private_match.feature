@@ -21,8 +21,8 @@ Feature: User creates a private match in the app
 
     Examples:
         | name              | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      | starts_at         | privateMatch         | privateMatchPassword | wrong_password |
-        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2024-10-30T09:00  | 1                    | 12345                | 11111          |
-        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2024-10-30T09:00  | 1                    | 12345                |                |        
+        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2040-10-30 00:00:00.000000000 +0000        | 1                    | 12345                | 11111          |
+        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2040-10-30 00:00:00.000000000 +0000        | 1                    | 12345                |                |        
     
     Scenario Outline: Successful private match access with the right password
         Given the user is in the match name "<name>", description "<description>", address "<address>", privateCourt "<privateCourt>", limit "<limit>", halfCourt "<halfCourt>", level "<level>", starts_at "<starts_at>", privateMatch "<privateMatch>", privateMatchPassword "<privateMatchPassword>"
@@ -47,8 +47,8 @@ Feature: User creates a private match in the app
 
     Examples:
         | name              | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      | starts_at         | privateMatch         | privateMatchPassword | wrong_password |
-        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2024-10-30T09:00  | 1                    | 12345                | 11111          |
-        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2024-10-30T09:00  | 1                    | 12345                |                |
+        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2040-10-30 00:00:00.000000000 +0000        | 1                    | 12345                | 11111          |
+        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2040-10-30 00:00:00.000000000 +0000        | 1                    | 12345                |                |
 
     Scenario Outline: unsuccessful private match access with the wrong password
         Given the user is in the match name "<name>", description "<description>", address "<address>", privateCourt "<privateCourt>", limit "<limit>", halfCourt "<halfCourt>", level "<level>", starts_at "<starts_at>", privateMatch "<privateMatch>", privateMatchPassword "<privateMatchPassword>"
@@ -72,8 +72,8 @@ Feature: User creates a private match in the app
 
     Examples:
         | name              | description                           | address                                                                      | privateCourt | limit | halfCourt  | level      | starts_at         | privateMatch         | privateMatchPassword | wrong_password |
-        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2024-10-30T09:00  | 1                    | 12345                | 11111          |
-        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2024-10-30T09:00  | 1                    | 12345                |                |
+        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2040-10-30 00:00:00.000000000 +0000        | 1                    | 12345                | 11111          |
+        | Rachao da EACH 2  | Rachao entre alunos da Each           | Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000     | 1            | 20    | 1          | Livre      | 2040-10-30 00:00:00.000000000 +0000        | 1                    | 12345                |                |
 
 
         
