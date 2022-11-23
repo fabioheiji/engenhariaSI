@@ -150,7 +150,7 @@ RSpec.describe "Matches", type: :request do
     before(:each) do
       @user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
       post login_path, params: { session: { email: "john@email.com", password: "123" } }          
-      @match = Match.create(name: "Rachao da EACH 2", description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", privateCourt: true, limit: 20, halfCourt: true, level: "Livre", starts_at: "2022-10-30T09:00", privateMatch: true, privateMatchPassword: "12345")
+      @match = Match.create(name: "Rachao da EACH 2", description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", privateCourt: true, limit: 20, halfCourt: true, level: "Livre", starts_at: "2023-10-30T09:00", privateMatch: true, privateMatchPassword: "12345", user: @user)
     end
     
     it "returns http redirect" do
