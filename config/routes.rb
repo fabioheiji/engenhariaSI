@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post   'signup'  => 'users#create'
   
   post   'create_participate_in_match'   => 'matches#create_participate_in_match'
+  post   'create_participate_in_private_match'   => 'matches#create_participate_in_private_match'
   post   'kick_player'   => 'matches#kick_player'
 end
 
