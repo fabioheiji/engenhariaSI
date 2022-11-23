@@ -9,6 +9,7 @@ class Match < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :users
 
+
   validates(
     :limit, 
     presence: { message: ": É obrigatório informar o limite!" }, 
