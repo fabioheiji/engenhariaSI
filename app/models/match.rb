@@ -23,9 +23,10 @@ class Match < ApplicationRecord
   scope :filter_by_half_court, -> (halfCourt) { where halfCourt: halfCourt }
 
   def self.search(search)
-    if search
+    if search 
       where(["LOWER(name) LIKE LOWER(?)","%#{search}%"])
         .or(where(["LOWER(address) LIKE LOWER(?)","%#{search}%"]))
+        .or(where(["LOWER(description) LIKE LOWER(?)","%#{search}%"]))
     else
       Match.all
     end
