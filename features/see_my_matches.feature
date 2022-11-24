@@ -2,10 +2,10 @@
 Feature: See my matches
 
 Scenario: See all my matches
-  Given the user has created or participated in matches
+  Given the user has created matches
   And the user clicks on 'Minhas partidas'
-  Then the user should see all owned matches and all the matches he participated in
-  And not the matches he is not participating 
+  Then the user should see all owned matches
+  But not matches created by anyone else
 
 Scenario: There are no matches created by me
   Given the user clicks on 'Minhas partidas'
