@@ -9,9 +9,10 @@
     <% @user.owned_matches.each do |m| %>
       <article>
         <h3><%= m.name %></h3>
-        <p><b>Address: </b><%= m.address %></p>
-        <p><b>Description: </b><%= m.description %></p>
-        <%= link_to "View more", match_path(m.id), id: "view-#{m.id}"%><br>
+        <p><b>Endereço: </b><%= m.address %></p>
+        <p><b>Descrição: </b><%= m.description %></p>
+        <%= link_to "Ver mais", match_path(m.id), id: "view-#{m.id}"%><br>
+        <%= link_to "Editar partida", edit_match_path(m.id)%><br>
         <%= link_to "Deletar partida", match_path(m.id), :id => "remove_#{m.id}", data: {
                     turbo_method: :delete,
                     turbo_confirm: "Confirmar deleção?"

@@ -5,16 +5,14 @@
 </section>
 <section>
   <h2>Buscar partida</h2>
-  <%= form_tag(matches_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag(:search, params[:search], placeholder: "Nome ou endereço")%>
-    <%= submit_tag ("Pesquisar") %>
-  <% end %>
+  <%= render "matches/search" %>
 </section>
  <section>
+  <h3 style="display: none;">Resultados da pesquisa</h3>
   <% if @matches.present? %>
     <% @matches.each do |m| %>
       <article>
-        <h3><%= link_to m.name, match_path(m.id) %></h3>
+        <h4><%= link_to m.name, match_path(m.id) %></h4>
         <p><b>Endereço: </b><%= m.address %></p>
         <p><b>Descrição: </b><%= m.description %></p>
         <%= link_to "Ver mais", match_path(m.id), id: "view-#{m.id}"%><br><br>
