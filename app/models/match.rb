@@ -17,6 +17,9 @@ class Match < ApplicationRecord
 
   validate :start_date_is_earlier_than_now?
 
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
+
   scope :filter_by_starts_at, -> (time) { where starts_at: time.. }
   scope :filter_by_limit, -> (limit) { where limit: limit }
   scope :filter_by_level, -> (level) { where level: level }

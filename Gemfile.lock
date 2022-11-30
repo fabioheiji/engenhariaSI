@@ -154,6 +154,7 @@ GEM
     e2mmap (0.1.0)
     erubi (1.11.0)
     ffi (1.15.5)
+    geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -419,6 +420,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   debug
+  geocoder (>= 1.8.0)
   importmap-rails
   jasmine
   jbuilder
