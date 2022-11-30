@@ -17,8 +17,6 @@ class Match < ApplicationRecord
     numericality: { in: 2..20, message: ": Limite de participantes deve estar entre 2 e 20" }
   )
 
-  validate :start_date_is_earlier_than_now?
-
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
