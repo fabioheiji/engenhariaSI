@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_181304) do
     t.datetime "starts_at"
     t.float "latitude"
     t.float "longitude"
+    t.boolean "privateMatch"
+    t.string "privateMatchPassword"
   end
 
   create_table "matches_users", id: false, force: :cascade do |t|

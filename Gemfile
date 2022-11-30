@@ -31,6 +31,8 @@ gem 'rails-ujs', '~> 0.1.0'
 
 gem 'geocoder', '>= 1.8.0'
 
+gem 'validates_timeliness', '~> 7.0.0.beta1'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

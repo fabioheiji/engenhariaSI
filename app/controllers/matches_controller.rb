@@ -54,17 +54,28 @@ class MatchesController < ApplicationController
       redirect_to root_path, status: :forbidden
     end
   end
- 
-  def create_participate_in_match    
+
+
+  def create_participate_in_match   
+    puts params 
     @user = User.find(params['participate_in_match']['user_id'])
     @match = Match.find(params['participate_in_match']['match_id'])
-    
+
     if @match.users.include? @user      
       @match.users.delete(@user)
+      redirect_to '/matches/' + @match.id.to_s
     else
-      @match.users << @user
+      if params['participate_in_match']['privateMatchPassword'] == @match.privateMatchPassword
+        @match.users << @user
+        redirect_to '/matches/' + @match.id.to_s
+      else        
+        @msg = 'Senha incorreta! Tente novamente.'
+        @join_button_on = true
+        render :show, status: :unprocessable_entity, content_type: "text/html"
+        headers["Content-Type"] = "text/html"
+      end
     end
-    redirect_to '/matches/' + @match.id.to_s
+    
   end
 
   def show
@@ -90,6 +101,6 @@ class MatchesController < ApplicationController
 
   private
   def match_params
-    params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level, :starts_at)
+    params.require(:match).permit(:name, :description, :address, :privateCourt, :limit, :halfCourt, :level, :starts_at, :privateMatch, :privateMatchPassword)
   end
 end
