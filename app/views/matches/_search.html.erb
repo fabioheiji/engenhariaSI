@@ -1,7 +1,7 @@
 <%= form_with model: @match, method: "get", id:"search-form" do |f| %>
     <div>
-        <%= f.label :search, "Nome ou endereço da partida", style: "display:none;" %>
-        <%= f.text_field :search, placeholder: "Nome ou endereço da partida" %>
+        <%= f.label :search, "Endereço próximo, nome ou descrição", style: "display:none;" %>
+        <%= f.text_field :search, placeholder: "Endereço próximo, nome ou descrição" %>
     </div>
     <br>
     <div>
