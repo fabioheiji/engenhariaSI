@@ -20,6 +20,20 @@ RSpec.describe Match, type: :model do
         }
       ]
     )
+    Geocoder::Lookup::Test.add_stub(
+      "Biblioteca IME-USP", [
+        {
+          'coordinates'  => [-23.5595142, -46.7314202],
+        }
+      ]
+    )
+    Geocoder::Lookup::Test.add_stub(
+      "USP São Carlos", [
+        {
+          'coordinates'  => [-22.001523, -47.9306186],
+        }
+      ]
+    )
   end
 
   before(:each) do
@@ -101,6 +115,17 @@ RSpec.describe Match, type: :model do
     expect(results).to all(be_valid)
     expect(results).to eq(matches)
   end
+
+  it 'pesquisa partidas dentro de um raio, dado um endereço, e as retorna ordenadas por distância' do
+    match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: 'Livre', halfCourt: 0, starts_at: Time.now + 100, limit: 15, user: @user)
+    match1 = Match.create(name: 'Rachão do IME', description: 'Description1', address: 'Cidade Universitária', level: 'Iniciante', halfCourt: 1, starts_at: Time.now + 1000, limit: 10, user: @user)
+    match2 = Match.create(name: 'Rachão do ICMC', description: 'Description2', address: 'USP São Carlos', level: 'Iniciante', halfCourt: 0, starts_at: Time.now + 10000, limit: 4, user: @user)
+
+    expect([match0, match1, match2]).to all(be_valid)
+    results = Match.near("Jardim Keralux", 20, :order => :distance)
+    expect(results).to eq([match1, match0])
+  end
+
 
   it 'filtra partidas por data e hora de inicio' do
     match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: 'Livre', halfCourt: 0, starts_at:  Time.now + 100, limit: 15, user: @user)
