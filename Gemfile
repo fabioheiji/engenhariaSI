@@ -61,8 +61,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem "sass-rails"
-
 gem 'coveralls_reborn', '~> 0.25.0', require: false
 
 gem "simplecov"

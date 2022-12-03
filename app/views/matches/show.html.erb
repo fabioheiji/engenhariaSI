@@ -1,80 +1,82 @@
-<h1><%= @match.name %></h1>
-<section>
-  <% if @match.privateMatch %>
-    <p><strong>Partida privada</strong></p>
-  <% end %>
- 
-  <p><strong>Descrição:</strong> <%= @match.description %></p>
+<div class="flex flex-col items-center">
+  <h1 class="text-3xl font-bold mb-10"><%= @match.name %></h1>
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mb-5 min-w-800">
+    <% if @match.privateMatch %>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Partida privada</strong></p>
+    <% end %>
+  
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Descrição:</strong> <%= @match.description %></p>
 
-  <% if @match.privateMatch && @join_button_on %>
+    <% if @match.privateMatch && @join_button_on %>
+      <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
+        <% if logged_in? %>
+          <%= form.hidden_field :user_id, :value => current_user.id %>
+          <% if params["participate_in_match"].present? %>
+            <%= form.hidden_field :match_id, :value => params["participate_in_match"]['match_id'] %>
+          <% else %>
+            <%= form.hidden_field :match_id, :value => params[:id] %>
+          <% end %>
+        <% end %>
+        <%= form.label :privateMatchPassword, "Senha para partida privada" %>
+        <%= form.password_field :privateMatchPassword %>
+        <%= form.submit 'Participar', class: "mt-4 w-full bg-slate-400 py-2 rounded-md text-lg tracking-wide" %>  
+        <% if @msg.present? %>
+          <p><strong><%= @msg %></p></strong>
+        <% end %>    
+      <% end %>
+    <% else %> 
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Endereço:</strong> <%= @match.address %></p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Limite de participantes:</strong> <%= @match.limit %></p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Nível:</strong> <%= @match.level %></p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
+
+      <hr/>
+
+    <%# <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> %>
     <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
-      <% if logged_in? %>
-        <%= form.hidden_field :user_id, :value => current_user.id %>
-        <% if params["participate_in_match"].present? %>
-          <%= form.hidden_field :match_id, :value => params["participate_in_match"]['match_id'] %>
-        <% else %>
+        <% if logged_in? %>
+          <%= form.hidden_field :user_id, :value => current_user.id %>
           <%= form.hidden_field :match_id, :value => params[:id] %>
         <% end %>
-      <% end %>
-      <%= form.label :privateMatchPassword, "Senha para partida privada" %>
-      <%= form.password_field :privateMatchPassword %>
-      <%= form.submit 'Participar'%>  
-      <% if @msg.present? %>
-        <p><strong><%= @msg %></p></strong>
-      <% end %>    
-    <% end %>
-  <% else %> 
-    <p><strong>Endereço:</strong> <%= @match.address %></p>
-    <p><strong>Limite de participantes:</strong> <%= @match.limit %></p>
-    <p><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
-    <p><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
-    <p><strong>Nível:</strong> <%= @match.level %></p>
-    <p><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
-
-    <hr/>
-
-  <%# <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> %>
-  <%= form_with url: "/create_participate_in_match", scope: :participate_in_match, model: @participate_in_match  do |form| %>    
-      <% if logged_in? %>
-        <%= form.hidden_field :user_id, :value => current_user.id %>
-        <%= form.hidden_field :match_id, :value => params[:id] %>
-      <% end %>
-      <% if @join_button_on %>
-        <% if @full_match %>
-        <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> 
+        <% if @join_button_on %>
+          <% if @full_match %>
+          <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> 
+        <% else %>
+          <%= form.submit 'Participar', class: "mt-4 w-full bg-slate-400 py-2 rounded-md text-lg tracking-wide"%>
+          <% end %>
       <% else %>
-        <%= form.submit 'Participar'%>
+          <%= form.submit 'Sair da Partida', class: "p-5 mt-4 w-full bg-red-600 py-2 rounded-md text-lg tracking-wide"%>      
         <% end %>
-    <% else %>
-        <%= form.submit 'Sair da Partida'%>      
       <% end %>
     <% end %>
-  <% end %>
 
-  <p>Participantes</p>
-  <ul>
-    <% @match.users.each do |user| %>
-        <li id="">
-          <%= user.name %> - <%= user.position %>
-          <% if @can_kick_players %>
-            <% if @user.id != user.id %>
-              <%= form_with url: kick_player_path, :html => { :style => 'display: inline-block;' } do |form| %>    
-                <% if logged_in? %>
-                  <%= form.hidden_field :user_id, :value => current_user.id %>
-                  <%= form.hidden_field :match_id, :value => params[:id] %>
-                  <%= form.hidden_field :player_id, :value => user.id %>
+    <h5 class="text-1xl font-bold mt-3">Participantes</h5>
+    <ul>
+      <% @match.users.each do |user| %>
+          <li id="">
+            <%= user.name %> - <%= user.position %>
+            <% if @can_kick_players %>
+              <% if @user.id != user.id %>
+                <%= form_with url: kick_player_path, :html => { :style => 'display: inline-block;' } do |form| %>    
+                  <% if logged_in? %>
+                    <%= form.hidden_field :user_id, :value => current_user.id %>
+                    <%= form.hidden_field :match_id, :value => params[:id] %>
+                    <%= form.hidden_field :player_id, :value => user.id %>
+                  <% end %>
+                  <%= form.submit 'Expulsar participante', class: "p-5 mt-4 w-full bg-red-400 py-2 rounded-md text-lg tracking-wide"%>
                 <% end %>
-                <%= form.submit 'Expulsar participante'%>
               <% end %>
             <% end %>
-          <% end %>
-        </li>
-      <% end %> 
-  </ul>
+          </li>
+        <% end %> 
+    </ul>
 
-  <% if !@full_match %>
-    <button id="copy-to-clipboard">Compartilhar partida</button>
-    <span id="tooltip" style="display: none">URL da partida copiada! Envie para seus amigos.</span>
-  <% end %>
-</section>
+    <% if !@full_match %>
+      <button id="copy-to-clipboard">Compartilhar partida</button>
+      <span id="tooltip" style="display: none">URL da partida copiada! Envie para seus amigos.</span>
+    <% end %>
+  </div>
+</div>
 

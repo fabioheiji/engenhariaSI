@@ -1,37 +1,39 @@
-<%= form_with model: @match, method: "get", id:"search-form" do |f| %>
+<div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 items-center">
+    <%= form_with model: @match, method: "get", id:"search-form" do |f| %>
     <div>
-        <%= f.label :search, "Nome ou endereço da partida", style: "display:none;" %>
-        <%= f.text_field :search, placeholder: "Nome ou endereço da partida" %>
+        <%= f.label :search, "Nome ou endereço da partida", style: "display:none;", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= f.text_field :search, placeholder: "Nome ou endereço da partida", class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
     </div>
     <br>
     <div>
         <div>
-            <%= f.label :starts_at, "A partir da data:" %>
+            <%= f.label :starts_at, "A partir da data:", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
         </div>
-        <%= f.datetime_local_field :starts_at %>
+        <%= f.datetime_local_field :starts_at, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
     </div>
     <br>
     <div>
-        <%= f.label :limit, "Nº participantes:" %>
-        <%= f.number_field :limit, in: 2..20 %>
+        <%= f.label :limit, "Nº participantes:", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= f.number_field :limit, in: 2..20, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
     </div>
     <br>
     <div>
-        <%= f.label :level, "Dificuldade:" %>
-        <%= f.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado'])%>
+        <%= f.label :level, "Dificuldade:", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= f.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado']), {}, { class: 'block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded' }%>
     </div>
     <br>
     <div>
         <div>
-            <%= f.label :half_court, "Meia quadra:" %>
+            <%= f.label :half_court, "Meia quadra:", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
         </div>
-        <%= f.radio_button :half_court, true %>
+        <%= f.radio_button :half_court, true, class: "w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"  %>
         <%= f.label :half_court, "Sim", value: true %>
-        <%= f.radio_button :half_court, false %>
+        <%= f.radio_button :half_court, false, class: "w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
         <%= f.label :half_court, "Não", value: false %>
     </div>
     <br>
     <div>
-        <%= f.submit "Pesquisar" %>
+        <%= f.submit "Pesquisar", class: "mt-4 w-full bg-slate-400 py-2 rounded-md text-lg tracking-wide" %>
     </div>
     <% end %>
+</div>

@@ -9,29 +9,64 @@
   </div>
 <% end %>
 
-<h1>Criar partida</h1>
+<div class="flex flex-col items-center">
+  <h1 class="text-3xl font-bold">Criar partida</h1>
 
-<%= form_with model: @match  do |form| %>
-    <%= form.label :name, "Nome" %>
-    <%= form.text_field :name %>
-    <%= form.label :description, "Descrição" %>
-    <%= form.text_field :description %>
-    <%= form.label :address, "Endereço" %>
-    <%= form.text_field :address %>
-    <%= form.label :privateCourt, "Quadra privada" %>
-    <%= form.check_box :privateCourt %>
-    <%= form.label :limit, "Limite de participantes" %>
-    <%= form.number_field :limit, in: 2..20 %>
-    <%= form.label :halfCourt, "Meia quadra" %>
-    <%= form.check_box :halfCourt %>
-    <%= form.label :level, "Nível" %>
-    <%= form.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado'])%>
-    <%= form.label :starts_at, "Inicia-se" %>
-    <%= form.datetime_local_field :starts_at, min: Time.now().to_s.slice(0,16)  %>
-    <%= form.label :privateMatch, "Partida privada" %>
-    <%= form.check_box :privateMatch %>
-    <%= form.label :privateMatchPassword, "Senha para partida privada" %>
-    <%= form.password_field :privateMatchPassword %>
-
-    <%= form.submit 'Salvar'%>
-<% end %>
+  <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 items-center">
+    <%= form_with model: @match  do |form| %>
+      <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+          <%= form.label :name, "Nome", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.text_field :name, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+        </div>
+        <div class="md:w-1/2 px-3">
+          <%= form.label :description, "Descrição", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.text_field :description, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+        </div>
+      </div>
+      <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3">
+          <%= form.label :address, "Endereço", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.text_field :address, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+        </div>
+      </div>
+      <div class="-mx-3 md:flex mb-2">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+          <%= form.label :limit, "Limite de participantes", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.number_field :limit, in: 2..20, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+        </div>
+        <div class="md:w-1/2 px-3">
+          <%= form.label :level, "Nível", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <div class="relative">
+            <%= form.select :level, options_for_select(['', 'Livre', 'Iniciante', 'Intermediário', 'Avançado']), {}, { class: 'block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded' } %>
+          </div>
+        </div>
+      </div>
+      <div class="-mx-3 md:flex mb-2">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+          <%= form.label :starts_at, "Inicia-se", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.datetime_local_field :starts_at, min: Time.now().to_s.slice(0,16), class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+        </div>
+        <div class="md:w-1/2 px-3">
+          <%= form.label :privateCourt, "Quadra privada", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.check_box :privateCourt, class: "w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+        </div>
+        <div class="md:w-1/2 px-3">
+          <%= form.label :halfCourt, "Meia quadra", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.check_box :halfCourt, class: "w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+        </div>
+      </div>
+      <div class="-mx-3 md:flex mb-2">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+          <%= form.label :privateMatch, "Partida privada", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.check_box :privateMatch, class: "w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+        </div>
+        <div class="md:w-1/2 px-3">
+          <%= form.label :privateMatchPassword, "Senha para partida privada", class: "lock uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+          <%= form.password_field :privateMatchPassword, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+        </div>
+      </div>
+      <%= form.submit 'Salvar', class: "mt-4 w-full bg-slate-400 py-2 rounded-md text-lg tracking-wide" %>
+    <% end %>
+  </div>
+</div>
