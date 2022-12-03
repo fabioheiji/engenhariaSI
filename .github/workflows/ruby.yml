@@ -44,6 +44,7 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails db:setup
+          bundle exec rake assets:precompile
           bundle exec rspec
           bundle exec cucumber
 
