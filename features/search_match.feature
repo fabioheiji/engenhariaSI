@@ -5,13 +5,13 @@ Feature: Search matches
     Given the user opens the matches page
     Then the user should see all matches
 
-  Scenario: Empty Search Results
+  Scenario: Empty search Results
     Given the user opens the matches page
     When the user fills in the "search" field with "Bulbasaur" 
     And the user clicks on "Pesquisar"
     Then the user should see the text "Não foram encontradas partidas com esse nome ou endereço."
 
-  Scenario: Successful Search
+  Scenario: Successful search by name
     Given the user opens the matches page
     When the user fills in the "search" field with "EACH"
     And the user clicks on "Pesquisar"
@@ -19,11 +19,21 @@ Feature: Search matches
     But the user should not see the text "Rachão do ICMC"
     And the user should not see the text "Rachão do IME"
 
-  Scenario: Successful search - case insensitive
+  Scenario: Successful search - case insensitive by address
     Given the user opens the matches page
-    When the user fills in the "search" field with "usp leste"
+    When the user fills in the "search" field with "usp"
     And the user clicks on "Pesquisar"
     Then the user should see the text "Rachão da EACH"
+    And the user should see the text "Rachão do ICMC"
+    And the user should see the text "Rachão do IME"
+    But the user should not see the text "Morioh Stands"
+
+  Scenario: Successful search - by near locations in a 10km radius
+    Given the user opens the matches page
+    When the user fills in the "search" field with "Jardim Keralux"
+    And the user clicks on "Pesquisar"
+    Then the user should see the text "Rachão da EACH"
+    But the user should not see the text "Rachão do ICMC"
 
   Scenario: Successful filtered search - from a certain date
     Given the user opens the matches page
