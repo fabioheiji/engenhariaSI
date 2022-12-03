@@ -43,3 +43,5 @@ coverage
 .solargraph.yml
 
 .DS_Store
+
+docker-compose.yml

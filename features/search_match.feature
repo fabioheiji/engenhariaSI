@@ -27,7 +27,7 @@ Feature: Search matches
 
   Scenario: Successful filtered search - from a certain date
     Given the user opens the matches page
-    And the user fills in the "starts_at" field with now + "1000"
+    And the user fills in the "starts_at" field with now + "990"
     And the user clicks on "Pesquisar"
     Then the user should see the text "Rachão do IME"
     And the user should see the text "Rachão do ICMC"
