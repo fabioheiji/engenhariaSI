@@ -29,6 +29,8 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 
 gem 'rails-ujs', '~> 0.1.0'
 
+gem 'geocoder', '>= 1.8.0'
+
 gem 'validates_timeliness', '~> 7.0.0.beta1'
 
 group :development, :test do

@@ -2,6 +2,40 @@ require 'rails_helper'
 
 RSpec.describe Match, type: :model do
 
+  before(:all) do
+    Geocoder.configure(:lookup => :test)
+
+    Geocoder::Lookup::Test.set_default_stub(
+      [
+        {
+          'coordinates'  => [-23.5506507, -46.6333824],
+        }
+      ]
+    )
+
+    Geocoder::Lookup::Test.add_stub(
+      "USP Leste", [
+        {
+          'coordinates'  => [-23.4854987, -46.5005576],
+        }
+      ]
+    )
+    Geocoder::Lookup::Test.add_stub(
+      "Biblioteca IME-USP", [
+        {
+          'coordinates'  => [-23.5595142, -46.7314202],
+        }
+      ]
+    )
+    Geocoder::Lookup::Test.add_stub(
+      "USP São Carlos", [
+        {
+          'coordinates'  => [-22.001523, -47.9306186],
+        }
+      ]
+    )
+  end
+
   before(:each) do
     @user = User.create( 
       name: 'LeBron James', 
@@ -43,6 +77,12 @@ RSpec.describe Match, type: :model do
     expect(match).not_to be_valid
   end
 
+  it 'retorna partida com latitude e longitude, dado um endereço' do
+    each = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: 'Livre', halfCourt: 0, starts_at: '2020-11-05T15:00', limit: 15, user: @user)
+    expect(each.latitude).to eq(-23.4854987)
+    expect(each.longitude).to eq(-46.5005576)    
+  end
+
   it 'é válido com atributos válidos' do
     match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: Time.now + 10)
     expect(match).to be_valid
@@ -76,13 +116,24 @@ RSpec.describe Match, type: :model do
     expect(results).to eq(matches)
   end
 
+  it 'pesquisa partidas dentro de um raio, dado um endereço, e as retorna ordenadas por distância' do
+    match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: 'Livre', halfCourt: 0, starts_at: Time.now + 100, limit: 15, user: @user)
+    match1 = Match.create(name: 'Rachão do IME', description: 'Description1', address: 'Cidade Universitária', level: 'Iniciante', halfCourt: 1, starts_at: Time.now + 1000, limit: 10, user: @user)
+    match2 = Match.create(name: 'Rachão do ICMC', description: 'Description2', address: 'USP São Carlos', level: 'Iniciante', halfCourt: 0, starts_at: Time.now + 10000, limit: 4, user: @user)
+
+    expect([match0, match1, match2]).to all(be_valid)
+    results = Match.near("Jardim Keralux", 20, :order => :distance)
+    expect(results).to eq([match1, match0])
+  end
+
+
   it 'filtra partidas por data e hora de inicio' do
     match0 = Match.create(name: 'Rachão da EACH', description: 'Description0', address: 'USP Leste', level: 'Livre', halfCourt: 0, starts_at:  Time.now + 100, limit: 15, user: @user)
     match1 = Match.create(name: 'Rachão do ICMC', description: 'Description1', address: 'Cidade Universitária', level: 'Iniciante', halfCourt: 1, starts_at:  Time.now + 1000, limit: 10, user: @user)
     match2 = Match.create(name: 'Rachão do IME', description: 'Description2', address: 'USP São Carlos', level: 'Iniciante', halfCourt: 0, starts_at:  Time.now + 10000, limit: 4, user: @user)
 
     matches = [match1, match2]
-    result = Match.filter_by_starts_at(Time.now + 999)
+    result = Match.filter_by_starts_at(Time.now + 990)
     expect(result).to eq(matches)
   end
 
@@ -121,5 +172,19 @@ RSpec.describe Match, type: :model do
   it 'invalido data de inicio menor que a data atual' do
     match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: Time.now - 10)
     expect(match).not_to be_valid
+  end
+
+  it 'não é editável pois não o usuário não é dono' do
+    not_owner = User.create( 
+      name: 'Jojo', 
+      email: 'josuke_higashikata@morioh.jp', 
+      password: 'jojo', 
+      password_confirmation: 'jojo',
+      birth_date: Date.new(1984, 12, 30),
+      position: 'Power Forward'
+    )
+    match = Match.create(name: 'Rachão LeEACH', description: 'Partida legendária', address: 'USP Leste', level: "To infinity and beyond", user: @user, limit: 15, starts_at: Time.now - 10)
+
+    
   end
 end

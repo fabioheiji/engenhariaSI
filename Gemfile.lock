@@ -149,6 +149,7 @@ GEM
     erubi (1.11.0)
     ffi (1.15.5)
     foreman (0.87.2)
+    geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -413,6 +414,7 @@ DEPENDENCIES
   database_cleaner
   debug
   foreman (~> 0.87.2)
+  geocoder (>= 1.8.0)
   importmap-rails
   jasmine
   jbuilder

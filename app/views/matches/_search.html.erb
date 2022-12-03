@@ -1,8 +1,8 @@
 <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 items-center">
     <%= form_with model: @match, method: "get", id:"search-form" do |f| %>
     <div>
-        <%= f.label :search, "Nome ou endereço da partida", style: "display:none;", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
-        <%= f.text_field :search, placeholder: "Nome ou endereço da partida", class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+        <%= f.label :search, "Endereço próximo, nome ou descrição", style: "display:none;", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= f.text_field :search, placeholder: "Endereço próximo, nome ou descrição", class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
     </div>
     <br>
     <div>
