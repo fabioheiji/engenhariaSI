@@ -1,4 +1,4 @@
-<h1><%= @match.name %></h1>
+<h1 id="match__title"><%= @match.name %></h1>
 <section>
   <% if @match.privateMatch %>
     <p><strong>Partida privada</strong></p>
@@ -24,13 +24,31 @@
       <% end %>    
     <% end %>
   <% else %> 
+    
+    <% if @match.latitude.nil? || @match.longitude.nil? %>
+      <h1>Endereço não encontrado</h1>
+    <% else %>
+      <%=
+        map(
+          :center => {:latlng => [@match.latitude, @match.longitude],:zoom => 18},
+          :markers => [
+            {
+              :latlng => [@match.latitude, @match.longitude],
+              :popup => "A localizacao de " + @match.name + " é aqui!",
+            }
+          ]
+        ) 
+      %>
+    <% end %>
+    
     <p><strong>Endereço:</strong> <%= @match.address %></p>
     <p><strong>Limite de participantes:</strong> <%= @match.limit %></p>
     <p><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
     <p><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
     <p><strong>Nível:</strong> <%= @match.level %></p>
     <p><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
-
+    <%= hidden_field(:match, :latitude) %>
+    <%= hidden_field(:match, :longitude) %>
     <hr/>
 
   <%# <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> %>

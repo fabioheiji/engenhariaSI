@@ -7,3 +7,8 @@ form {
   flex-direction: column;
   max-width: 500px;
 }
+
+#map{
+  width: 80vw;
+  height: 180px;
+}
