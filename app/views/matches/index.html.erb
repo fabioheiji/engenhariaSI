@@ -4,25 +4,29 @@
   <hr>
 </section>
 <section>
-  <h2>Buscar partida</h2>
+  <h2 class="text-center text-3xl font-bold">Buscar partida</h2>
   <%= render "matches/search" %>
 </section>
  <section>
   <h3 style="display: none;">Resultados da pesquisa</h3>
-  <% if @matches.present? %>
-    <% @matches.each do |m| %>
-      <article>
-        <h4><%= link_to m.name, match_path(m.id) %></h4>
-        <p><b>Endereço: </b><%= m.address %></p>
-        <p><b>Descrição: </b><%= m.description %></p>
-        <%= link_to "Ver mais", match_path(m.id), id: "view-#{m.id}"%><br><br>
-      </article>
-    <% end %>  
-  <% else %>
-    <% if params[:search].present? %>
-      <p>Não foram encontradas partidas com esse nome ou endereço.</p>
+  <div class="grid grid-cols-3 m-10">
+    <% if @matches.present? %>
+      <% @matches.each do |m| %>
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mb-5">
+              <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= link_to m.name, match_path(m.id) %></h4>
+
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><b>Endereço: </b><%= m.address %></p>
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><b>Descrição: </b><%= m.description %></p>
+              
+              <%= link_to "View more", match_path(m.id), id: "view-#{m.id}", class: "inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"%>
+        </div>
+      <% end %>  
     <% else %>
-      <p>Não há partidas criadas.</p>
+      <% if params[:search].present? %>
+        <p>Não foram encontradas partidas com esse nome ou endereço.</p>
+      <% else %>
+        <p>Não há partidas criadas.</p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
  </section>

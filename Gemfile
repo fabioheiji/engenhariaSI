@@ -63,8 +63,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem "sass-rails"
-
 gem 'coveralls_reborn', '~> 0.25.0', require: false
 
 gem "simplecov"
@@ -72,3 +70,7 @@ gem "simplecov"
 gem 'simplecov-lcov', '~> 0.8.0'
 
 gem "coveralls", require: false
+
+gem "tailwindcss-rails", "~> 2.0"
+
+gem "foreman", "~> 0.87.2"
