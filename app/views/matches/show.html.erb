@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center">
-  <h1 class="text-3xl font-bold mb-10"><%= @match.name %></h1>
+  <h1 id="match__title" class="text-3xl font-bold mb-10"><%= @match.name %></h1>
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mb-5 min-w-800">
     <% if @match.privateMatch %>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Partida privada</strong></p>
@@ -25,13 +25,31 @@
         <% end %>    
       <% end %>
     <% else %> 
+    
+    <% if @match.latitude.nil? || @match.longitude.nil? %>
+      <h1>Endereço não encontrado</h1>
+    <% else %>
+      <%=
+        map(
+          :center => {:latlng => [@match.latitude, @match.longitude],:zoom => 18},
+          :markers => [
+            {
+              :latlng => [@match.latitude, @match.longitude],
+              :popup => "A localizacao de " + @match.name + " é aqui!",
+            }
+          ]
+        ) 
+      %>
+    <% end %>
+    
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Endereço:</strong> <%= @match.address %></p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Limite de participantes:</strong> <%= @match.limit %></p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Quadra privada:</strong> <%= @match.privateCourt %></p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Meia quadra:</strong> <%= @match.halfCourt %></p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Nível:</strong> <%= @match.level %></p>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Inicia-se:</strong> <%= @match.starts_at %></p>
-
+    <%= hidden_field(:match, :latitude) %>
+    <%= hidden_field(:match, :longitude) %>
       <hr/>
 
     <%# <p><strong>Não é possível entrar nesta sala. O limite de participantes foi atingido!</strong></p> %>
