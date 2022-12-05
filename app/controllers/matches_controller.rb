@@ -57,7 +57,6 @@ class MatchesController < ApplicationController
 
 
   def create_participate_in_match   
-    puts params 
     @user = User.find(params['participate_in_match']['user_id'])
     @match = Match.find(params['participate_in_match']['match_id'])
 
