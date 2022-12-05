@@ -140,6 +140,7 @@ RSpec.describe "Matches", type: :request do
       put "/matches/#{@match.id}", params: { match: { name: "Big hash", description: "Hello! Join in match", address: "Atlanta", privateCourt: true, halfCourt: false, limit: 15, level: "Livre", starts_at: Time.now + 10 } }
       expect(response).to have_http_status(:forbidden)
     end
+    
     it "does not update match without params" do
       post login_path, params: { session: { email: @user_match_owner.email, password: @user_match_owner.password } }          
       expect { put "/matches/#{@match.id}" }.to raise_error(ActionController::ParameterMissing)
