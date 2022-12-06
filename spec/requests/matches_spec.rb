@@ -178,5 +178,24 @@ RSpec.describe "Matches", type: :request do
       expect(response).to have_http_status(:redirect)
     end
 
-  end  
+  end
+
+  describe "POST kick_player" do
+    before(:each) do
+      @match_owner_user = User.create(name: "John", email: "john@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      @match = Match.create(name: "Rachao da EACH 2", description: "Rachao entre alunos da Each", address: "Rua Arlindo Béttio, 1000 - Ermelino Matarazzo, São Paulo - SP, 03828-000", privateCourt: true, limit: 20, halfCourt: true, level: "Livre", starts_at: "2023-10-30T09:00", privateMatch: true, privateMatchPassword: "12345", user: @match_owner_user)
+      @match_participant_user = User.create(name: "John", email: "john2@email.com", birth_date: "01/01/1980", password_confirmation: "123", password: "123", position: "PF")
+      post login_path, params: { session: { email: @match_participant_user.email, password: @match_participant_user.password } }
+      get "/matches/#{@match.id}"
+      post create_participate_in_match_path, params: {participate_in_match: {user_id: @match_participant_user.id, match_id: @match.id, privateMatchPassword: @match.privateMatchPassword}}
+      delete logout_path
+      post login_path, params: { session: { email: @match_owner_user.email, password: @match_owner_user.password } }
+    end
+
+    it "should kick the player from a match and returns http direct" do
+      get "/matches/#{@match.id}"
+      post kick_player_path, params: { user_id: @match_owner_user.id, match_id: @match.id, player_id: @match_participant_user.id }
+      expect(response).to have_http_status(:redirect)
+    end
+  end
 end
